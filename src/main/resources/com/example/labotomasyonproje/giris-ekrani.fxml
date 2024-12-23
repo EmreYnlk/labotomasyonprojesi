@@ -16,12 +16,12 @@
       </image>
    </ImageView>
    <PasswordField fx:id="kullanicisifre_giris" layoutX="165.0" layoutY="402.0" promptText="Şifre" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="164.0" />
-      <ImageView fitHeight="52.0" fitWidth="50.0" layoutX="105.0" layoutY="389.0" AnchorPane.bottomAnchor="147.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="323.0" AnchorPane.topAnchor="389.0">
+      <ImageView fitHeight="37.0" fitWidth="41.0" layoutX="110.0" layoutY="396.0" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="327.0" AnchorPane.topAnchor="396.0">
          <image>
             <Image url="@../../../resimler/giris_kullanicisifrelogo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="52.0" fitWidth="50.0" layoutX="105.0" layoutY="317.0" AnchorPane.bottomAnchor="219.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="323.0" AnchorPane.topAnchor="317.0">
+      <ImageView fitHeight="44.0" fitWidth="41.0" layoutX="110.0" layoutY="321.0" AnchorPane.bottomAnchor="223.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="327.0" AnchorPane.topAnchor="321.0">
          <image>
             <Image url="@../../../resimler/giris_kullaniciadilogo.png" />
          </image>

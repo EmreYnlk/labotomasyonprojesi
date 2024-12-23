@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -12,51 +13,52 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 
-import static com.example.labotomasyonproje.kullanicilar.bilgisorgulama;
+import static com.example.labotomasyonproje.Kullanicilar.bilgisorgulama;
+
 
 public class girisKontrol {
-
-
-    kullanicilar kullanici1 = new kullanicilar("Emre","Emre","Yanalak","Erkek","12345",true);
-    kullanicilar kullanici2 = new kullanicilar("Emin","Emin","Dinç","Erkek","12345",true);
-    kullanicilar kullanici3 = new kullanicilar("Eren","Eren","Başali","Erkek","12345",true);
-    kullanicilar Kullanici4 = new kullanicilar("Elçin","Elçin","Yılmaz","Kadın","12345",false);
-    kullanicilar kullanici5 = new kullanicilar("Maske","Ahmet","Yılmaz","Erkek","12345",false);
-
+    Yetkili kullanici1 = new Yetkili("emre","Emre","Erkek","Yanalak","12345","Yönetici");
+    Yetkili kullanici2 = new Yetkili("emin","Emin","Erkek","Dinç","12345","Yardımcı");
+    Yetkili kullanici3 = new Yetkili("eren","Eren","Erkek","Başali","12345","Y");
+    Kullanicilar kullanici4 = new Kullanicilar("elçin","Elçin","Kadın","Yılmaz","12345");
     @FXML
     private TextField kullaniciadi_giris;
-
+    @FXML
+    private Button giris_butonu;
     @FXML
     private PasswordField kullanicisifre_giris;
 
-    @FXML
-    private void login() {
+    public void login() {
         String kullaniciAdi = kullaniciadi_giris.getText();
         String sifre = kullanicisifre_giris.getText();
-
-        int sonuc = bilgisorgulama(kullaniciAdi, sifre);
-        switch (sonuc) {
-            case 1 -> {
-                kullanicilar mevcutKullanici = kullanicilar.kullaniciBul(kullaniciAdi);
-                goodloginmesaj();
-                yeniSahne(mevcutKullanici.getCinsiyet(), mevcutKullanici.getName() + " " + mevcutKullanici.getSurname(), mevcutKullanici.isYetkilimi());
+        int sayac = bilgisorgulama(kullaniciAdi,sifre);
+        if (sayac==1){
+            goodloginmesaj();
+            Kullanicilar mevcutKullanici = Kullanicilar.suankiKullanici(kullaniciAdi);
+            yeniSahne(mevcutKullanici.getCinsiyet(), mevcutKullanici.getIsim() + " " + mevcutKullanici.getSoyisim(),mevcutKullanici.buyetkilimi());
+        }
+        else {
+            if (sayac == 2){
+                badloginmesaj(true);
             }
-            case 0 -> badloginmesaj(true);
-            default -> badloginmesaj(false);
+            else {
+                badloginmesaj(false);
+            }
         }
     }
 
 
 
 
-    public void yeniSahne(String cinsiyet, String isimSoyisim,boolean yetkilimi) {
+    public void yeniSahne(String cinsiyet, String isimSoyisim,boolean yetkilimibu) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("uygulama-anaekran.fxml"));
             Parent root = fxmlLoader.load();
 
             // Ana ekran kontrolünü al
             anaekranKontrol kontrol = fxmlLoader.getController();
-            kontrol.setKullaniciBilgisi(cinsiyet, isimSoyisim,yetkilimi);
+
+            kontrol.setKullaniciBilgisi(cinsiyet, isimSoyisim,yetkilimibu);
 
             // Yeni sahneyi göster
             Stage stage = new Stage();
@@ -90,7 +92,7 @@ public class girisKontrol {
     }
     private void badloginmesaj(boolean asd) {
         String hatamesaji;
-        if (asd){
+        if (!asd){
             hatamesaji="Böyle Bir Kullanici Bulunmamaktadır";
         }else {
             hatamesaji="Şifreyi Hatalı Girdiniz";
