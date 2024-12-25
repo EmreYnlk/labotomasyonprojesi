@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class A_deneyyapmaKontrol {
 
-
+    private static int hangideneykibu;
 
     @FXML
     private Button deneyyap_geridon;
@@ -81,7 +81,24 @@ public class A_deneyyapmaKontrol {
 
     @FXML
     void spektrofo_deneyyap(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deney1.fxml"));
+            Parent yeniRoot = fxmlLoader.load();
 
+            // Kontrolör sınıfını alın
+            A_deney1Kontrol kontrol = fxmlLoader.getController();
+
+            //phmetre deneyi ekranındaki sağ ve soldaki listeleri doldur
+            kontrol.listeleriEkle(2);
+
+            // Tetikleyici kaynağı Node olarak alın
+            Node source = (Node) event.getSource();
+            Scene mevcutSahne = source.getScene();
+            mevcutSahne.setRoot(yeniRoot);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

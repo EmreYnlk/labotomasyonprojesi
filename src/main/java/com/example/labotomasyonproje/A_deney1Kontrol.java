@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 
@@ -17,6 +18,14 @@ public class A_deney1Kontrol {
 
     @FXML
     public ListView<Makineler> deney1_sagliste;
+    @FXML
+    private Label aciklamadegisen;
+    @FXML
+    private Label baslikdegisen;
+    @FXML
+    private Label spektrofotmetredeneyiyazisi1;
+    @FXML
+    private StackPane degisecekrenkbu;
 
     @FXML
     private Label phsonucuburda;
@@ -29,6 +38,7 @@ public class A_deney1Kontrol {
     @FXML
     void deneyekraninacik(MouseEvent event) {
         phsonucuburda.setVisible(false);
+        spektrofotmetredeneyiyazisi1.setVisible(false);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deneyyapma.fxml"));
             Parent yeniRoot = fxmlLoader.load();
@@ -78,7 +88,38 @@ public class A_deney1Kontrol {
                 listeleriEkle(1); //liste güncellenmeli
                 }
         }
-        else{            //en geniş if'in elsi
+        else{            //en geniş if'in elsi///////////////////////////////////////////////////////////////////////////////
+            Kimyasal solSecim;
+            Makineler sagSecim;
+            if (deney1_solliste.getSelectionModel().getSelectedItem()==null || deney1_sagliste.getSelectionModel().getSelectedItem()== null)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Eyvaah!!");
+                alert.setHeaderText("Eksik Seçim Yaptınız");
+                alert.setContentText("");
+                alert.showAndWait();
+                return;
+            }
+            else {solSecim = deney1_solliste.getSelectionModel().getSelectedItem();
+                sagSecim = deney1_sagliste.getSelectionModel().getSelectedItem();
+            }
+
+            if (sagSecim.kirikmi(sagSecim.getDayaniklilik())){
+                //makine kırık işlem yapamaz
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Tüh.Bir şeyler yanlış");
+                alert.setHeaderText("Olamaz. Seçtiğiniz Spektrofotometre Kırık Lütfen Başka Bir spektrofotometre Seçin");
+                alert.setContentText("");
+                alert.showAndWait();
+            } else {
+                //makine kırık değil işleme devam
+                sagSecim.dayaniklilikharca(sagSecim.getDayaniklilik());
+                spektrofotmetredeneyiyazisi1.setVisible(true);
+                spektrofotmetredeneyiyazisi1.setText( solSecim.formul +" ve indikatör yardımı ile deney yapıldı.Oluşan renk:");
+                degisecekrenkbu.setStyle("-fx-background-color: " + solSecim.getRenkkodu() + ";");
+                degisecekrenkbu.setVisible(true);
+                listeleriEkle(2); //liste güncellenmeli
+            }
 
         }
 
@@ -88,6 +129,8 @@ public class A_deney1Kontrol {
     public void listeleriEkle(int hangideney) {
         if (hangideney==1){
             this.hangideney=hangideney;
+            baslikdegisen.setText("Phmetre ile Ph Ölçme");
+            aciklamadegisen.setText("phmetre seçiniz ");
             deney1_solliste.getItems().clear();
             deney1_sagliste.getItems().clear();
 
@@ -97,6 +140,21 @@ public class A_deney1Kontrol {
 
             // Makineler için
             deney1_sagliste.getItems().addAll(phmetre.tumphmetreler); // Nesneleri ekle
+        }
+        else {
+            this.hangideney=hangideney;
+            baslikdegisen.setText("Spektrofotometre ile Renk Değişimi");
+            aciklamadegisen.setText("spektrofotometre seçiniz ");
+            deney1_solliste.getItems().clear();
+            deney1_sagliste.getItems().clear();
+
+            // Kimyasallar için
+            deney1_solliste.getItems().addAll(Kim_Asit.asitListesi); // Nesneleri ekle
+            deney1_solliste.getItems().addAll(Kim_Baz.bazListesi); // Nesneleri ekle
+
+            // Makineler için
+            deney1_sagliste.getItems().addAll(spektrofotometre.tumspektrofometre); // Nesneleri ekle
+
         }
 
 

@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="660.0" prefWidth="923.0" style="-fx-background-color: linear-gradient(to right, #C8A2C8, #e4bce4);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labotomasyonproje.A_deney1Kontrol">
@@ -20,10 +21,10 @@
       <AnchorPane layoutX="298.0" layoutY="165.0">
          <children>
             <Label prefHeight="38.0" prefWidth="339.0" text="Lütfen yanlardan bir adet asit/baz ve kullanmamız için bir adet" textAlignment="CENTER" textFill="#9f44d3" />
-            <Label layoutY="19.0" prefHeight="38.0" prefWidth="339.0" text="phmetre seçiniz " textAlignment="CENTER" textFill="#9f44d3" />
+            <Label fx:id="aciklamadegisen" layoutY="19.0" prefHeight="38.0" prefWidth="339.0" text="phmetre seçiniz " textAlignment="CENTER" textFill="#9f44d3" />
          </children>
       </AnchorPane>
-      <Label alignment="CENTER" layoutX="350.0" layoutY="68.0" prefHeight="38.0" prefWidth="223.0" text="Phmetre ile Ph Ölçme" textFill="#9f44d3">
+      <Label fx:id="baslikdegisen" alignment="CENTER" layoutX="311.0" layoutY="68.0" prefHeight="38.0" prefWidth="314.0" text="Phmetre ile Ph Ölçme" textFill="#9f44d3">
          <font>
             <Font size="23.0" />
          </font>
@@ -49,5 +50,11 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Label fx:id="spektrofotmetredeneyiyazisi1" alignment="CENTER" layoutX="286.0" layoutY="375.0" prefHeight="35.0" prefWidth="350.0" text="HcLasd ve indikatör yardımı ile deney yapıldı.Oluşan renk:" visible="false">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <StackPane fx:id="degisecekrenkbu" layoutX="408.0" layoutY="426.0" prefHeight="57.0" prefWidth="106.0" visible="false" />
    </children>
 </AnchorPane>
