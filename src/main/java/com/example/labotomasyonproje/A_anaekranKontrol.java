@@ -105,6 +105,9 @@ public class A_anaekranKontrol {
         sagdakiliste.getItems().clear();
         soldaki_liste.getItems().clear();
         listemesaj.setText("Asit ve Bazlar");
+        soldaki_liste.setStyle("-fx-font-size: 20px;");
+        sagdakiliste.setStyle("-fx-font-size: 20px;");
+
 
         for (Kim_Asit asit : Kim_Asit.asitListesi) {
             soldaki_liste.getItems().add(asit.getIsmi() + " (" + asit.getFormul() + ")");
@@ -118,6 +121,8 @@ public class A_anaekranKontrol {
     public void EkipmanListele(){
         soldaki_liste.getItems().clear();
         sagdakiliste.getItems().clear();
+        soldaki_liste.setStyle("-fx-font-size: 14px;");
+        sagdakiliste.setStyle("-fx-font-size: 14px;");
         listemesaj.setText("Makine ve Ekipmanlar");
         for (Ekipman ekipman : Ekipman.ekipmanListesi) {
             sagdakiliste.getItems().add(ekipman.getBedenbuyuklugu() +" Beden "+ekipman.getIsim() + " (" + ekipman.getMiktar() + " adet)");
@@ -125,27 +130,27 @@ public class A_anaekranKontrol {
         for (Makineler makine : Makinelisteleme.tumMakineleriGetir()) {
 
             if (makine instanceof phmetre) {
-                soldaki_liste.getItems().add(makine.getBarkodno()+" barkodu phMetre (dayanıklılık = "+ makine.getDayaniklilik()+")");
+                soldaki_liste.getItems().add(makine.getBarkodno()+" barkodu phMetre (dayanıklılık="+ makine.getDayaniklilik()+")");
             }
             else if (makine instanceof spektrofotometre) {
                 spektrofotometre sp = (spektrofotometre) makine;
+                String fisnedir = sp.fisebaglimi ? "Bağlı." : "Bağlı değil.";
                 String ekrandagosterilecek =
-                        makine.getBarkodno() + "barkodlu spektrofometre (dayanıklılık= "+ makine.getDayaniklilik() + ")\n " +
-                                "(Fişe bağlı mı: " + sp.fisebaglimi + ")";
+                        makine.getBarkodno() + " barkodlu spektrofometre (dayanıklılık="+ makine.getDayaniklilik() + ")\n " +
+                                "↳Fişe bağlı mı: " + fisnedir ;
 
                 soldaki_liste.getItems().add(ekrandagosterilecek);
             }
         }
-
-
-
-
-
-
-
         tus_ile_gorseldegistir(1);
     }
     public void DeneyYap(){
+
+
+
+
+
+
         tus_ile_gorseldegistir(2);
 
     }
