@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="660.0" prefWidth="923.0" style="-fx-background-color: linear-gradient(to right, #C8A2C8, #e4bce4);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labotomasyonproje.A_deney1Kontrol">
+   <children>
+      <ListView fx:id="deney1_solliste" layoutX="14.0" layoutY="30.0" prefHeight="600.0" prefWidth="248.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0" />
+      <ListView fx:id="deney1_sagliste" layoutX="634.0" layoutY="30.0" prefHeight="600.0" prefWidth="248.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
+      <Label alignment="CENTER" layoutX="435.0" layoutY="30.0" prefHeight="38.0" prefWidth="56.0" text="Hadi" textAlignment="CENTER" textFill="#9f44d3">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="298.0" layoutY="165.0">
+         <children>
+            <Label prefHeight="38.0" prefWidth="339.0" text="Lütfen yanlardan bir adet asit/baz ve kullanmamız için bir adet" textAlignment="CENTER" textFill="#9f44d3" />
+            <Label layoutY="19.0" prefHeight="38.0" prefWidth="339.0" text="phmetre seçiniz " textAlignment="CENTER" textFill="#9f44d3" />
+         </children>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="350.0" layoutY="68.0" prefHeight="38.0" prefWidth="223.0" text="Phmetre ile Ph Ölçme" textFill="#9f44d3">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="357.0" layoutY="106.0" prefHeight="38.0" prefWidth="210.0" text="Deneyine Başlayalım" textFill="#9f44d3">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Button fx:id="phmetredeney_baslabuton" layoutX="368.0" layoutY="318.0" mnemonicParsing="false" onMouseClicked="#deney1Basla" text="Seçim yaptım deneye başlayalım" />
+      <Button fx:id="ana_cikisButonu" alignment="TOP_LEFT" layoutX="365.0" layoutY="610.0" mnemonicParsing="false" onMouseClicked="#deneyekraninacik" prefHeight="46.0" prefWidth="138.0" style="-fx-background-color: f9d3f9;" text="Geri Dön">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="46.0" fitWidth="43.0" layoutX="462.0" layoutY="611.0">
+         <image>
+            <Image url="@../../../resimler/anaekran-geritusu.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="sectiginkimyasal_yazisi" layoutX="278.0" layoutY="484.0" prefHeight="0.0" prefWidth="265.0" text="Seçtiğin Kimyasalın ph'ı=">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="phsonucuburda" layoutX="556.0" layoutY="482.0" text="Boş">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

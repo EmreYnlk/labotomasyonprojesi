@@ -1,7 +1,6 @@
 package com.example.labotomasyonproje;
 
 public interface Makineler {
-    void makineyikullan();
     void dayaniklilikharca(int dayaniklilik);
     String getBarkodno();
     int getDayaniklilik();

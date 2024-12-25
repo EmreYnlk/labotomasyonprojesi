@@ -2,12 +2,14 @@ package com.example.labotomasyonproje;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 
 public class A_deneyyapmaKontrol {
@@ -53,9 +55,29 @@ public class A_deneyyapmaKontrol {
     }
 
     @FXML
-    void phmetre_deneyyap(MouseEvent event) {
+    public void phmetre_deneyyap(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deney1.fxml"));
+            Parent yeniRoot = fxmlLoader.load();
 
+            // Kontrolör sınıfını alın
+            A_deney1Kontrol kontrol = fxmlLoader.getController();
+
+            // Listeleri doldurun
+            kontrol.listeleriEkle();
+
+            // Tetikleyici kaynağı Node olarak alın
+            Node source = (Node) event.getSource();
+            Scene mevcutSahne = source.getScene();
+            mevcutSahne.setRoot(yeniRoot);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+
 
     @FXML
     void spektrofo_deneyyap(MouseEvent event) {

@@ -108,12 +108,11 @@ public class A_anaekranKontrol {
         soldaki_liste.setStyle("-fx-font-size: 20px;");
         sagdakiliste.setStyle("-fx-font-size: 20px;");
 
-
         for (Kim_Asit asit : Kim_Asit.asitListesi) {
-            soldaki_liste.getItems().add(asit.getIsmi() + " (" + asit.getFormul() + ")");
+            soldaki_liste.getItems().add(asit.toString()); // toString çağrılıyor
         }
         for (Kim_Baz baz : Kim_Baz.bazListesi) {
-            sagdakiliste.getItems().add(baz.getIsmi() + " (" + baz.getFormul() + ")");
+            sagdakiliste.getItems().add(baz.toString());
         }
 
         tus_ile_gorseldegistir(1);
@@ -148,6 +147,10 @@ public class A_anaekranKontrol {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deneyyapma.fxml"));
             Parent yeniRoot = fxmlLoader.load();
+
+            // Deney yapma kontrol sınıfını al ve gerekli işlemleri yap
+            A_deneyyapmaKontrol kontrol = fxmlLoader.getController();
+            // Gerekirse kontrol sınıfına veri aktarabilirsiniz.
 
             Scene mevcutSahne = hosgeldinMesaji.getScene();
             mevcutSahne.setRoot(yeniRoot);

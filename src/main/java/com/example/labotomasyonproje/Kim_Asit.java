@@ -20,4 +20,10 @@ public class Kim_Asit extends Kimyasal{
     boolean tehlikelimi() {
         return this.ph < 2 ;
     }
+
+
+    @Override
+    public String toString() {
+        return ismi + " (" + formul + ")";
+    }
 }

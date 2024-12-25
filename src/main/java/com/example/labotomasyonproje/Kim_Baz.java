@@ -16,4 +16,9 @@ public class Kim_Baz extends Kimyasal{
     boolean tehlikelimi() {
         return this.ph > 12;
     }
+
+    @Override
+    public String toString() {
+        return ismi + " (" + formul + ")";
+    }
 }

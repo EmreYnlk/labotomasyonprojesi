@@ -7,12 +7,15 @@ public class phmetre implements Makineler{
     String barkodno;
     int dayaniklilik;
 
+    public static List<Makineler> tumphmetreler = new ArrayList<>();
 
     public phmetre(String barkodno, int dayaniklilik) {
         this.barkodno = barkodno;
         this.dayaniklilik = dayaniklilik;
         Makinelisteleme.ekle(this);
+        tumphmetreler.add(this);
     }
+
 
     @Override
     public String getBarkodno() {
@@ -28,20 +31,11 @@ public class phmetre implements Makineler{
         this.dayaniklilik = dayaniklilik - 1;
     }
 
+
     @Override
-    public void makineyikullan() {
-        if (kirikmi(this.dayaniklilik)){
-            //eğer kırıksa buraya gelicek
-        }else {
-            //değilse burdan devam
-
-
-
-
-            // en son dayanıklılık harcanacak
-            dayaniklilikharca(this.dayaniklilik);
-        }
-
+    public String toString() {
+        return "Barkod: " + barkodno + " (Dayanıklılık: " + dayaniklilik + ")";
     }
+
 
 }
