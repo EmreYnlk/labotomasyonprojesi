@@ -13,11 +13,11 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 
 public class A_deney1Kontrol {
+    static int hangideney;
 
     @FXML
     public ListView<Makineler> deney1_sagliste;
-    @FXML
-    private Label sectiginkimyasal_yazisi;
+
     @FXML
     private Label phsonucuburda;
     @FXML
@@ -28,7 +28,7 @@ public class A_deney1Kontrol {
 
     @FXML
     void deneyekraninacik(MouseEvent event) {
-        sectiginkimyasal_yazisi.setVisible(false);
+        phsonucuburda.setVisible(false);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deneyyapma.fxml"));
             Parent yeniRoot = fxmlLoader.load();
@@ -47,41 +47,47 @@ public class A_deney1Kontrol {
 
     @FXML
     void deney1Basla(MouseEvent event) {
-        Kimyasal solSecim;
-        Makineler sagSecim;
-        if (deney1_solliste.getSelectionModel().getSelectedItem()==null || deney1_sagliste.getSelectionModel().getSelectedItem()== null)
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Eyvaah!!");
-            alert.setHeaderText("Eksik Seçim Yaptınız");
-            alert.setContentText("");
-            alert.showAndWait();
-            return;
+        if (hangideney==1){
+            Kimyasal solSecim;
+            Makineler sagSecim;
+            if (deney1_solliste.getSelectionModel().getSelectedItem()==null || deney1_sagliste.getSelectionModel().getSelectedItem()== null)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Eyvaah!!");
+                alert.setHeaderText("Eksik Seçim Yaptınız");
+                alert.setContentText("");
+                alert.showAndWait();
+                return;
+            }
+            else {solSecim = deney1_solliste.getSelectionModel().getSelectedItem();
+                sagSecim = deney1_sagliste.getSelectionModel().getSelectedItem();
+            }
+
+            if (sagSecim.kirikmi(sagSecim.getDayaniklilik())){
+                //makine kırık işlem yapamaz
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Tüh.Bir şeyler yanlış");
+                alert.setHeaderText("Olamaz. Seçtiğiniz Phmetre Kırık Lütfen Başka Bir Phmetre Seçin");
+                alert.setContentText("");
+                alert.showAndWait();
+            } else {
+                //makine kırık değil işleme devam
+                sagSecim.dayaniklilikharca(sagSecim.getDayaniklilik());
+                phsonucuburda.setVisible(true);
+                phsonucuburda.setText( solSecim.formul +"'ın ph'ı:"+String.valueOf(solSecim.ph));
+                listeleriEkle(1); //liste güncellenmeli
+                }
         }
-        else {solSecim = deney1_solliste.getSelectionModel().getSelectedItem();
-            sagSecim = deney1_sagliste.getSelectionModel().getSelectedItem();
+        else{            //en geniş if'in elsi
+
         }
 
-        if (sagSecim.kirikmi(sagSecim.getDayaniklilik())){
-            //makine kırık işlem yapamaz
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Tüh.Bir şeyler yanlış");
-            alert.setHeaderText("Olamaz.Seçtiğiniz Phmetre Kırık Lütfen Başka Bir Phmetre Seçin");
-            alert.setContentText("");
-            alert.showAndWait();
-        }
-        else {
-            //makine kırık değil işleme devam
-            sagSecim.dayaniklilikharca(sagSecim.getDayaniklilik());
-            sectiginkimyasal_yazisi.setVisible(true);
-            phsonucuburda.setVisible(true);
-            phsonucuburda.setText(String.valueOf(solSecim.ph));
-            listeleriEkle(); //liste güncellenmeli
-        }
 
     }
 
-    public void listeleriEkle() {
+    public void listeleriEkle(int hangideney) {
+        if (hangideney==1){
+            this.hangideney=hangideney;
             deney1_solliste.getItems().clear();
             deney1_sagliste.getItems().clear();
 
@@ -91,6 +97,8 @@ public class A_deney1Kontrol {
 
             // Makineler için
             deney1_sagliste.getItems().addAll(phmetre.tumphmetreler); // Nesneleri ekle
+        }
+
 
 
     }

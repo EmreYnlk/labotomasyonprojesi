@@ -63,8 +63,8 @@ public class A_deneyyapmaKontrol {
             // Kontrolör sınıfını alın
             A_deney1Kontrol kontrol = fxmlLoader.getController();
 
-            // Listeleri doldurun
-            kontrol.listeleriEkle();
+            //phmetre deneyi ekranındaki sağ ve soldaki listeleri doldur
+            kontrol.listeleriEkle(1);
 
             // Tetikleyici kaynağı Node olarak alın
             Node source = (Node) event.getSource();

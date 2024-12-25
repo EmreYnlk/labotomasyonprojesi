@@ -44,14 +44,9 @@
             <Image url="@../../../resimler/anaekran-geritusu.png" />
          </image>
       </ImageView>
-      <Label fx:id="sectiginkimyasal_yazisi" layoutX="278.0" layoutY="484.0" prefHeight="0.0" prefWidth="265.0" text="Seçtiğin Kimyasalın ph'ı=">
+      <Label fx:id="phsonucuburda" alignment="CENTER" layoutX="339.0" layoutY="483.0" prefHeight="35.0" prefWidth="258.0" text="ph:14" visible="false">
          <font>
             <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="phsonucuburda" layoutX="556.0" layoutY="482.0" text="Boş">
-         <font>
-            <Font size="27.0" />
          </font>
       </Label>
    </children>
