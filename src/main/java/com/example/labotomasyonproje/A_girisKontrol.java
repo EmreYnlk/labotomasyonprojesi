@@ -53,7 +53,6 @@ public class A_girisKontrol {
 
             // Ana ekran kontrolünü al
             A_anaekranKontrol kontrol = fxmlLoader.getController();
-
             kontrol.setKullaniciBilgisi(cinsiyet, isimSoyisim,yetkilimibu);
 
             // Yeni sahneyi göster

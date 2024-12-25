@@ -151,6 +151,7 @@ public class A_anaekranKontrol {
 
 
 
+
         tus_ile_gorseldegistir(2);
 
     }
