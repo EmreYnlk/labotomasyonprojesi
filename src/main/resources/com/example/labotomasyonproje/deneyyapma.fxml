@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="660.0" prefWidth="923.0" style="-fx-background-color: linear-gradient(to right, #C8A2C8, #e4bce4);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labotomasyonproje.A_deneyyapmaKontrol">
    <children>
       <ImageView fitHeight="210.0" fitWidth="390.0" layoutX="14.0" layoutY="70.0" onMouseClicked="#phmetre_deneyyap" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="70.0">
@@ -35,14 +34,14 @@
             <Image url="@../../../resimler/deneyyap-spektrofometre.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutY="607.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+      <AnchorPane layoutY="607.0" onMouseClicked="#anaekranageriDon" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <Button fx:id="deneyyap_geridon" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="141.0" style="-fx-background-color: f9d3f9;" text="Geri Dön">
+            <Button fx:id="deneyyap_geridon" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#anaekranageriDon" prefHeight="46.0" prefWidth="141.0" style="-fx-background-color: f9d3f9;" text="Geri Dön">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <ImageView fitHeight="46.0" fitWidth="48.0" layoutX="93.0">
+            <ImageView fitHeight="46.0" fitWidth="48.0" layoutX="93.0" onMouseClicked="#anaekranageriDon">
                <image>
                   <Image url="@../../../resimler/anaekran-geritusu.png" />
                </image>

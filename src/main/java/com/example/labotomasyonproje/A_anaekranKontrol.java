@@ -144,17 +144,19 @@ public class A_anaekranKontrol {
         }
         tus_ile_gorseldegistir(1);
     }
-    public void DeneyYap(){
+    public void DeneyYap() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deneyyapma.fxml"));
+            Parent yeniRoot = fxmlLoader.load();
 
+            Scene mevcutSahne = hosgeldinMesaji.getScene();
+            mevcutSahne.setRoot(yeniRoot);
 
-
-
-
-
-
-        tus_ile_gorseldegistir(2);
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     public void YönetimYap(){
         tus_ile_gorseldegistir(2);

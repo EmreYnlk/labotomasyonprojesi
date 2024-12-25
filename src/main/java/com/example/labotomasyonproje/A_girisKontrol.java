@@ -30,8 +30,12 @@ public class A_girisKontrol {
         int sayac = bilgisorgulama(kullaniciAdi,sifre);
         if (sayac==1){
             goodloginmesaj();
+            //Burası çok önemli
             Kullanicilar mevcutKullanici = Kullanicilar.suankiKullanici(kullaniciAdi);
-            yeniSahne(mevcutKullanici.getCinsiyet(), mevcutKullanici.getIsim() + " " + mevcutKullanici.getSoyisim(),mevcutKullanici.buyetkilimi());
+            giren_kullanici.getInstance().setKullaniciBilgileri(kullaniciAdi,mevcutKullanici.getIsim() + " " + mevcutKullanici.getSoyisim(),mevcutKullanici.getCinsiyet(), mevcutKullanici.buyetkilimi());
+            //Burasi çok önemli
+            yeniSahne();
+
         }
         else {
             if (sayac == 2){
@@ -46,8 +50,12 @@ public class A_girisKontrol {
 
 
 
-    public void yeniSahne(String cinsiyet, String isimSoyisim,boolean yetkilimibu) {
+    public void yeniSahne() {
         try {
+            String cinsiyet = giren_kullanici.getInstance().getCinsiyet();
+            String isimSoyisim = giren_kullanici.getInstance().getIsimSoyisim();
+            boolean yetkilimibu = giren_kullanici.getInstance().isYetkiliMi();
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("uygulama-anaekran.fxml"));
             Parent root = fxmlLoader.load();
 
