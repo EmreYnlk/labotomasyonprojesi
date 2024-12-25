@@ -14,15 +14,16 @@ import javafx.stage.Window;
 import java.io.IOException;
 import java.util.Optional;
 
-public class anaekranKontrol {
+public class A_anaekranKontrol {
 
     @FXML
     private Label hosgeldinMesaji;
     @FXML
-    private ListView<?> sagdakiliste;
-
+    private Label listemesaj;
     @FXML
-    private ListView<?> soldaki_liste;
+    private ListView<String> sagdakiliste;
+    @FXML
+    private ListView<String> soldaki_liste;
     @FXML
     private ImageView profilResmi;
     @FXML
@@ -87,23 +88,61 @@ public class anaekranKontrol {
 
 
 
-    private void tus_ile_gorseldegistir(int sayac){
+    private void tus_ile_gorseldegistir(int sayac){                //listeleme yapanlar 1 diğerleri 2 gönderiyor
         boolean listeler;
         if (sayac==1) {
             listeler=true;}
         else{
             listeler=false;}
         anaekran_gorselpencere.setVisible(false);
+        listemesaj.setVisible(listeler);
         soldaki_liste.setVisible(listeler);
         sagdakiliste.setVisible(listeler);
 
     }
 
-    public void malzemeListele(){
-        tus_ile_gorseldegistir(1);
+    public void malzemeListele() {
+        sagdakiliste.getItems().clear();
+        soldaki_liste.getItems().clear();
+        listemesaj.setText("Asit ve Bazlar");
 
+        for (Kim_Asit asit : Kim_Asit.asitListesi) {
+            soldaki_liste.getItems().add(asit.getIsmi() + " (" + asit.getFormul() + ")");
+        }
+        for (Kim_Baz baz : Kim_Baz.bazListesi) {
+            sagdakiliste.getItems().add(baz.getIsmi() + " (" + baz.getFormul() + ")");
+        }
+
+        tus_ile_gorseldegistir(1);
     }
     public void EkipmanListele(){
+        soldaki_liste.getItems().clear();
+        sagdakiliste.getItems().clear();
+        listemesaj.setText("Makine ve Ekipmanlar");
+        for (Ekipman ekipman : Ekipman.ekipmanListesi) {
+            sagdakiliste.getItems().add(ekipman.getBedenbuyuklugu() +" Beden "+ekipman.getIsim() + " (" + ekipman.getMiktar() + " adet)");
+        }
+        for (Makineler makine : Makinelisteleme.tumMakineleriGetir()) {
+
+            if (makine instanceof phmetre) {
+                soldaki_liste.getItems().add(makine.getBarkodno()+" barkodu phMetre (dayanıklılık = "+ makine.getDayaniklilik()+")");
+            }
+            else if (makine instanceof spektrofotometre) {
+                spektrofotometre sp = (spektrofotometre) makine;
+                String ekrandagosterilecek =
+                        makine.getBarkodno() + "barkodlu spektrofometre (dayanıklılık= "+ makine.getDayaniklilik() + ")\n " +
+                                "(Fişe bağlı mı: " + sp.fisebaglimi + ")";
+
+                soldaki_liste.getItems().add(ekrandagosterilecek);
+            }
+        }
+
+
+
+
+
+
+
         tus_ile_gorseldegistir(1);
     }
     public void DeneyYap(){

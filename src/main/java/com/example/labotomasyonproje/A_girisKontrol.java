@@ -16,11 +16,7 @@ import java.io.IOException;
 import static com.example.labotomasyonproje.Kullanicilar.bilgisorgulama;
 
 
-public class girisKontrol {
-    Yetkili kullanici1 = new Yetkili("emre","Emre","Erkek","Yanalak","12345","Yönetici");
-    Yetkili kullanici2 = new Yetkili("emin","Emin","Erkek","Dinç","12345","Yardımcı");
-    Yetkili kullanici3 = new Yetkili("eren","Eren","Erkek","Başali","12345","Y");
-    Kullanicilar kullanici4 = new Kullanicilar("elçin","Elçin","Kadın","Yılmaz","12345");
+public class A_girisKontrol {
     @FXML
     private TextField kullaniciadi_giris;
     @FXML
@@ -56,7 +52,7 @@ public class girisKontrol {
             Parent root = fxmlLoader.load();
 
             // Ana ekran kontrolünü al
-            anaekranKontrol kontrol = fxmlLoader.getController();
+            A_anaekranKontrol kontrol = fxmlLoader.getController();
 
             kontrol.setKullaniciBilgisi(cinsiyet, isimSoyisim,yetkilimibu);
 

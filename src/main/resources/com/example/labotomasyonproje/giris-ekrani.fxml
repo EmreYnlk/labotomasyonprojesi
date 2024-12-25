@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="478.0" style="-fx-background-color: linear-gradient(to left, #C8A2C8, #FFFFFF);;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labotomasyonproje.girisKontrol">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="478.0" style="-fx-background-color: linear-gradient(to left, #C8A2C8, #FFFFFF);;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labotomasyonproje.A_girisKontrol">
    <children><Button fx:id="giris_butonu" layoutX="203.0" layoutY="478.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="37.0" prefWidth="77.0" text="Giriş Yap" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="203.0" AnchorPane.rightAnchor="198.0" AnchorPane.topAnchor="478.0" />
    <TextField fx:id="kullaniciadi_giris" layoutX="165.0" layoutY="330.0" promptText="Kullanıcı Adı" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="164.0" />
    <ImageView fitHeight="267.0" fitWidth="247.0" layoutX="116.0" layoutY="14.0" AnchorPane.bottomAnchor="307.0" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="14.0">

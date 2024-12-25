@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="660.0" prefWidth="923.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labotomasyonproje.anaekranKontrol">
+<AnchorPane prefHeight="660.0" prefWidth="923.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labotomasyonproje.A_anaekranKontrol">
    <children>
       <AnchorPane prefHeight="660.0" prefWidth="297.0" style="-fx-background-color: linear-gradient(to right, #C8A2C8, #e4bce4);">
          <children>
@@ -23,7 +23,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="27.0" layoutY="374.0" mnemonicParsing="false" onMouseClicked="#EkipmanListele" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: e7a5e7;" text="Ekipman Listele" textFill="#9f44d3">
+            <Button layoutX="27.0" layoutY="374.0" mnemonicParsing="false" onMouseClicked="#EkipmanListele" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: e7a5e7;" text="Donanımı Listele" textFill="#9f44d3">
                <font>
                   <Font size="20.0" />
                </font>
@@ -70,8 +70,13 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ListView fx:id="soldaki_liste" layoutX="297.0" prefHeight="660.0" prefWidth="313.0" visible="false" />
-      <ListView fx:id="sagdakiliste" layoutX="610.0" prefHeight="660.0" prefWidth="313.0" visible="false" />
       <ImageView fx:id="anaekran_gorselpencere" fitHeight="660.0" fitWidth="626.0" layoutX="297.0" pickOnBounds="true" AnchorPane.rightAnchor="0.0" />
+      <ListView fx:id="soldaki_liste" layoutX="297.0" prefHeight="610.0" prefWidth="313.0" visible="false" AnchorPane.bottomAnchor="0.0" />
+      <ListView fx:id="sagdakiliste" layoutX="610.0" prefHeight="610.0" prefWidth="313.0" visible="false" AnchorPane.bottomAnchor="0.0" />
+      <Label fx:id="listemesaj" alignment="CENTER" layoutX="473.0" prefHeight="46.0" prefWidth="274.0" text="buraya yazı gelecek" visible="false" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

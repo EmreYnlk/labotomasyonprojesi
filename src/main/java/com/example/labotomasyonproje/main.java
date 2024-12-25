@@ -10,6 +10,9 @@ import java.io.IOException;
 public class main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
+        butunnesneler.nesneleritanımla();
+
         FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("giris-ekrani.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 478, 588);
         stage.setTitle("Uygulamaya Giriş");
