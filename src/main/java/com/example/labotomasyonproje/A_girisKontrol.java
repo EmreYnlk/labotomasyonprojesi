@@ -32,8 +32,9 @@ public class A_girisKontrol {
             goodloginmesaj();
             //Burası çok önemli
             Kullanicilar mevcutKullanici = Kullanicilar.suankiKullanici(kullaniciAdi);
-            giren_kullanici.getInstance().setKullaniciBilgileri(kullaniciAdi,mevcutKullanici.getIsim() + " " + mevcutKullanici.getSoyisim(),mevcutKullanici.getCinsiyet(), mevcutKullanici.buyetkilimi());
+            giren_kullanici.getInstance().setKullaniciBilgileri(kullaniciAdi,mevcutKullanici.getIsim() + " " + mevcutKullanici.getSoyisim(),mevcutKullanici.getCinsiyet(), mevcutKullanici.buyetkilimi(),mevcutKullanici.getBeden());
             //Burasi çok önemli
+
             yeniSahne();
 
         }

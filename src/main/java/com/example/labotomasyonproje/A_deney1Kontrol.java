@@ -15,6 +15,7 @@ import java.io.IOException;
 
 public class A_deney1Kontrol {
     static int hangideney;
+    static char beden;
 
     @FXML
     public ListView<Makineler> deney1_sagliste;
@@ -86,9 +87,14 @@ public class A_deney1Kontrol {
                 alert.showAndWait();
             } else {
                 //makine kırık değil işleme devam
+                if (ekipmanikullan_kirikmi()){
+                    ekipmankirikuyarisi();
+                    return;
+                }
+                ///////////////////////
                 sagSecim.dayaniklilikharca(sagSecim.getDayaniklilik());
                 phsonucuburda.setVisible(true);
-                phsonucuburda.setText( solSecim.formul +"'ın ph'ı:"+String.valueOf(solSecim.ph));
+                phsonucuburda.setText( solSecim.formul +"'ın ph'ı:"+String.valueOf(solSecim.ph)+"("+solSecim.tehlikelimi()+")");
                 listeleriEkle(1); //liste güncellenmeli
                 }
         }
@@ -117,6 +123,11 @@ public class A_deney1Kontrol {
                 alert.showAndWait();
             } else {
                 //makine kırık değil işleme devam
+                if (ekipmanikullan_kirikmi()){
+                    ekipmankirikuyarisi();
+                    return;
+                }
+                ///////////////////////
                 sagSecim.dayaniklilikharca(sagSecim.getDayaniklilik());
                 spektrofotmetredeneyiyazisi1.setVisible(true);
                 spektrofotmetredeneyiyazisi1.setText( solSecim.formul +" ve indikatör yardımı ile deney yapıldı.Oluşan renk:");
@@ -137,6 +148,11 @@ public class A_deney1Kontrol {
                 alert.showAndWait();
                 return;
             }else {
+                if (ekipmanikullan_kirikmi()){
+                    ekipmankirikuyarisi();
+                    return;
+                }
+                ///////////////////////
                 solSecim = deney1_solliste.getSelectionModel().getSelectedItem();
                 sagSecim = deney2_sagliste.getSelectionModel().getSelectedItem();
                 String ortarenkbu = deney3icinortarenk(sagSecim.getRenkkodu(), solSecim.getRenkkodu());
@@ -150,37 +166,57 @@ public class A_deney1Kontrol {
             }
 
         }
+        else if(hangideney==4){                               //en geniş if'in 4.sü ///////////////////////////////////////////////////////////////////////////////
+            //
+        }
 
 
     }
     private void yazigoster(){
-        if (hangideney==1 || hangideney==2){
+        if (hangideney==1){
+            baslikdegisen.setText("Phmetre ile Ph Ölçme");
+            baslikdegisen.setVisible(true);
             aciklamayukari.setText("Lütfen yanlardan bir adet asit/baz ve kullanmamız için bir adet");
+            aciklamayukari.setVisible(true);
+            aciklamadegisen.setText("phmetre seçiniz ");
+            aciklamadegisen.setVisible(true);
 
-            deney1_sagliste.setVisible(true);
+            deney1_sagliste.setVisible(true);          // deney1 sağdaki liste olarak makineleri kullanıyor
             deney2_sagliste.setVisible(false);
 
-            aciklamayukari.setVisible(true);
-            aciklamadegisen.setVisible(true);
+        } else if (hangideney==2) {
+            baslikdegisen.setText("Spektrofotometre ile Renk Değişimi");
             baslikdegisen.setVisible(true);
-        } else if (hangideney==3) {
-            aciklamayukari.setText("Lütfen birleştirmemiz için birer adet asit ve baz seçiniz");
-            baslikdegisen.setText("Asit ve Baz Birleşimi");
+            aciklamayukari.setText("Lütfen yanlardan bir adet asit/baz ve kullanmamız için bir adet");
+            aciklamayukari.setVisible(true);
+            aciklamadegisen.setText("spektrofotometre seçiniz ");
+            aciklamadegisen.setVisible(true);
 
-            deney1_sagliste.setVisible(false);
+            deney1_sagliste.setVisible(true);          // deney2 sağdaki liste olarak makineleri kullanıyor
+            deney2_sagliste.setVisible(false);
+
+        } else if (hangideney==3) {
+            baslikdegisen.setText("Asit ve Baz Birleşimi");
+            baslikdegisen.setVisible(true);
+            aciklamayukari.setText("Lütfen birleştirmemiz için birer adet asit ve baz seçiniz");
+            aciklamayukari.setVisible(true);
+            //başka bir satıra gerek kalmadı burdaki metin gereksiz olduğu için görünmez yapıyoruz
+            aciklamadegisen.setVisible(false);
+
+            deney1_sagliste.setVisible(false);         // deney3 sağdaki liste olarak kimyasalları kullanıyor.
             deney2_sagliste.setVisible(true);
 
-            aciklamayukari.setVisible(true);
-            aciklamadegisen.setVisible(false);
-            baslikdegisen.setVisible(true);
+        } else if (hangideney==4) {
+
         }
+
     }
 
     public void listeleriEkle(int hangideney) {
+        this.beden=giren_kullanici.getInstance().getBeden();
         if (hangideney==1){
             this.hangideney=hangideney;
-            baslikdegisen.setText("Phmetre ile Ph Ölçme");
-            aciklamadegisen.setText("phmetre seçiniz ");
+
             yazigoster();
             deney1_solliste.getItems().clear();
             deney1_sagliste.getItems().clear();
@@ -189,23 +225,21 @@ public class A_deney1Kontrol {
             deney1_solliste.getItems().addAll(Kim_Asit.asitListesi); // Nesneleri ekle
             deney1_solliste.getItems().addAll(Kim_Baz.bazListesi); // Nesneleri ekle
 
-            // Makineler için
+            // Phmetre için
             deney1_sagliste.getItems().addAll(phmetre.tumphmetreler); // Nesneleri ekle
         }
         else if (hangideney==2){
             this.hangideney=hangideney;
-            baslikdegisen.setText("Spektrofotometre ile Renk Değişimi");
-            aciklamadegisen.setText("spektrofotometre seçiniz ");
             yazigoster();
             deney1_solliste.getItems().clear();
             deney1_sagliste.getItems().clear();
 
             // Kimyasallar için
-            deney1_solliste.getItems().addAll(Kim_Asit.asitListesi); // Nesneleri ekle
-            deney1_solliste.getItems().addAll(Kim_Baz.bazListesi); // Nesneleri ekle
+            deney1_solliste.getItems().addAll(Kim_Asit.asitListesi);
+            deney1_solliste.getItems().addAll(Kim_Baz.bazListesi);
 
-            // Makineler için
-            deney1_sagliste.getItems().addAll(spektrofotometre.tumspektrofometre); // Nesneleri ekle
+            // Spektrofotometre için
+            deney1_sagliste.getItems().addAll(spektrofotometre.tumspektrofometre);
 
         }
         else if (hangideney==3){
@@ -214,12 +248,19 @@ public class A_deney1Kontrol {
             deney1_solliste.getItems().clear();
             deney2_sagliste.getItems().clear();
 
+            // Asit için
             deney1_solliste.getItems().addAll(Kim_Asit.asitListesi);
+            //Baz için
             deney2_sagliste.getItems().addAll(Kim_Baz.bazListesi);
 
 
 
+        } else if (hangideney==4) {
+            this.hangideney=hangideney;
+            yazigoster();
+
         }
+
 
 
 
@@ -242,5 +283,21 @@ public class A_deney1Kontrol {
         return sonrgbdeger;
     }
 
+
+    private boolean ekipmanikullan_kirikmi(){
+        if (Ekipman.ekipmankullan_kaldimi()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    private void ekipmankirikuyarisi(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Eyvah! Napıcaz");
+        alert.setHeaderText("Malesef sana uygun ekipman kalmadı.");
+        alert.setContentText("Yöneticilere başvurunuz.");
+        alert.showAndWait();
+
+    }
 
 }

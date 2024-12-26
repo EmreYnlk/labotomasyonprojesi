@@ -17,8 +17,8 @@ public class Kim_Asit extends Kimyasal{
 
 
     @Override
-    boolean tehlikelimi() {
-        return this.ph < 2 ;
+    String tehlikelimi() {
+        return ( (this.ph < 2) ? "Tehlikeli" : "Az tehlikeli" );
     }
 
 

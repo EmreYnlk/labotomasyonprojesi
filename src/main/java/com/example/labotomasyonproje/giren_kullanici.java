@@ -6,6 +6,7 @@ public class giren_kullanici {
     private String isimSoyisim;
     private String cinsiyet;
     private boolean yetkiliMi;
+    private char beden;
 
     // Özel constructor (dışarıdan nesne oluşturulamaz)
     private giren_kullanici() {}
@@ -19,11 +20,12 @@ public class giren_kullanici {
     }
 
     // Kullanıcı bilgilerini ayarlamak için
-    public void setKullaniciBilgileri(String kullaniciAdi, String isimSoyisim,String cinsiyet, boolean yetkiliMi) {
+    public void setKullaniciBilgileri(String kullaniciAdi, String isimSoyisim,String cinsiyet, boolean yetkiliMi,char beden) {
         this.kullaniciAdi = kullaniciAdi;
         this.isimSoyisim = isimSoyisim;
         this.cinsiyet = cinsiyet;
         this.yetkiliMi = yetkiliMi;
+        this.beden=beden;
     }
 
     // Getter metodlar
@@ -41,5 +43,9 @@ public class giren_kullanici {
 
     public String getCinsiyet() {
         return cinsiyet;
+    }
+
+    public char getBeden() {
+        return beden;
     }
 }

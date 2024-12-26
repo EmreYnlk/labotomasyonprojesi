@@ -29,5 +29,5 @@ public abstract class Kimyasal {
         return renkkodu;
     }
 
-    abstract boolean tehlikelimi();
+    abstract String tehlikelimi();
 }

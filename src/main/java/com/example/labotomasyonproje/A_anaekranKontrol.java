@@ -124,26 +124,16 @@ public class A_anaekranKontrol {
         sagdakiliste.setStyle("-fx-font-size: 14px;");
         listemesaj.setText("Makine ve Ekipmanlar");
         for (Ekipman ekipman : Ekipman.ekipmanListesi) {
-            sagdakiliste.getItems().add(ekipman.getBedenbuyuklugu() +" Beden "+ekipman.getIsim() + " (" + ekipman.getMiktar() + " adet)");
+            sagdakiliste.getItems().add(ekipman.toString());
         }
         for (Makineler makine : Makinelisteleme.tumMakineleriGetir()) {
+            soldaki_liste.getItems().add(makine.toString());
 
-            if (makine instanceof phmetre) {
-                soldaki_liste.getItems().add(makine.getBarkodno()+" barkodu phMetre (dayanıklılık="+ makine.getDayaniklilik()+")");
-            }
-            else if (makine instanceof spektrofotometre) {
-                spektrofotometre sp = (spektrofotometre) makine;
-                String fisnedir = sp.fisebaglimi ? "Bağlı." : "Bağlı değil.";
-                String ekrandagosterilecek =
-                        makine.getBarkodno() + " barkodlu spektrofometre (dayanıklılık="+ makine.getDayaniklilik() + ")\n " +
-                                "↳Fişe bağlı mı: " + fisnedir ;
-
-                soldaki_liste.getItems().add(ekrandagosterilecek);
-            }
         }
         tus_ile_gorseldegistir(1);
     }
     public void DeneyYap() {
+        bedenileilgilibilgi();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deneyyapma.fxml"));
             Parent yeniRoot = fxmlLoader.load();
@@ -163,6 +153,22 @@ public class A_anaekranKontrol {
 
     public void YönetimYap(){
         tus_ile_gorseldegistir(2);
+    }
+    void bedenileilgilibilgi(){
+        char bununbeden = giren_kullanici.getInstance().getBeden();
+        StringBuilder uygunEkipmanlar = new StringBuilder("Senin bedenine uygun ekipmanlar:\n");
+
+        for (Ekipman ekipman : Ekipman.ekipmanListesi) {
+            if (ekipman.getBedenbuyuklugu() == bununbeden) {
+                uygunEkipmanlar.append("- ").append(ekipman.getIsim()).append(" (").append(bununbeden).append(" bedenden ").append(ekipman.getMiktar()).append(" adet kaldı.)\n");
+            }
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Dikkat et");
+        alert.setHeaderText("Unutma, her deney için bir adet ekipman harcarsın!");
+        alert.setContentText(uygunEkipmanlar.toString());
+        alert.showAndWait();
     }
 
 

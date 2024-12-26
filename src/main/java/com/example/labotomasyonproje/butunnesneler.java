@@ -4,10 +4,10 @@ public class butunnesneler {
 
 
     public static void nesneleritanımla(){
-        Yetkili kullanici1 = new Yetkili("emre","Emre","Erkek","Yanalak","12345","Yönetici");
-        Yetkili kullanici2 = new Yetkili("emin","Emin","Erkek","Dinç","12345","Yardımcı");
-        Yetkili kullanici3 = new Yetkili("eren","Eren","Erkek","Başali","12345","Y");
-        Kullanicilar kullanici4 = new Kullanicilar("elçin","Elçin","Kadın","Yılmaz","12345");
+        Yetkili kullanici1 = new Yetkili("emre","Emre","Erkek","Yanalak","12345",'L',"Yönetici");
+        Yetkili kullanici2 = new Yetkili("emin","Emin","Erkek","Dinç","12345",'M',"Yardımcı");
+        Yetkili kullanici3 = new Yetkili("eren","Eren","Erkek","Başali","12345",'M',"Y");
+        Kullanicilar kullanici4 = new Kullanicilar("elçin","Elçin","Kadın","Yılmaz","12345",'S');
 
         spektrofotometre spektrofotometre1 = new spektrofotometre("S0001",100,true);
         spektrofotometre spektrofotometre2 = new spektrofotometre("S0002",50,true);
@@ -17,17 +17,17 @@ public class butunnesneler {
         phmetre phmetre2 = new phmetre("P0002",50);
         phmetre phmetre3 = new phmetre("P0003",5);
 
-        Ekipman eldiven1 = new Ekipman("Eldiven","S",50);
-        Ekipman eldiven2 = new Ekipman("Eldiven","M",50);
-        Ekipman eldiven3 = new Ekipman("Eldiven","L",50);
+        Ekipman eldiven1 = new Ekipman("Eldiven",'S',50,50);
+        Ekipman eldiven2 = new Ekipman("Eldiven",'M',50,50);
+        Ekipman eldiven3 = new Ekipman("Eldiven",'L',50,50);
 
-        Ekipman gozluk1 = new Ekipman("Gözlük","S",50);
-        Ekipman gozluk2 = new Ekipman("Gözlük","M",50);
-        Ekipman gozluk3 = new Ekipman("Gözlük","L",50);
+        Ekipman gozluk1 = new Ekipman("Gözlük",'S',50,50);
+        Ekipman gozluk2 = new Ekipman("Gözlük",'M',50,50);
+        Ekipman gozluk3 = new Ekipman("Gözlük",'L',1,50);
 
-        Ekipman onluk1 = new Ekipman("Önlük","S",50);
-        Ekipman onluk2 = new Ekipman("Önlük","M",50);
-        Ekipman onluk3 = new Ekipman("Önlük","L",50);
+        Ekipman onluk1 = new Ekipman("Önlük",'S',50,50);
+        Ekipman onluk2 = new Ekipman("Önlük",'M',50,50);
+        Ekipman onluk3 = new Ekipman("Önlük",'L',50,50);
 
         Kim_Asit asit1 = new Kim_Asit("Hidroklorik Asit", "HCl", 1.0, "#FF0000");
         Kim_Asit asit2 = new Kim_Asit("Sülfürik Asit", "H₂SO₄", 1.5, "#FF1A1A");

@@ -45,9 +45,9 @@
             <Image url="@../../../resimler/anaekran-geritusu.png" />
          </image>
       </ImageView>
-      <Label fx:id="phsonucuburda" alignment="CENTER" layoutX="339.0" layoutY="483.0" prefHeight="35.0" prefWidth="258.0" text="ph:14" visible="false">
+      <Label fx:id="phsonucuburda" alignment="CENTER" layoutX="278.0" layoutY="483.0" prefHeight="35.0" prefWidth="368.0" text="ph:14" visible="false">
          <font>
-            <Font size="24.0" />
+            <Font size="23.0" />
          </font>
       </Label>
       <Label fx:id="spektrofotmetredeneyiyazisi1" alignment="CENTER" layoutX="286.0" layoutY="375.0" prefHeight="35.0" prefWidth="350.0" text="HcLasd ve indikatör yardımı ile deney yapıldı.Oluşan renk:" visible="false">

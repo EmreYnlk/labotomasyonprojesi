@@ -13,8 +13,8 @@ public class Kim_Baz extends Kimyasal{
     }
 
     @Override
-    boolean tehlikelimi() {
-        return this.ph > 12;
+    String tehlikelimi() {
+        return ( (this.ph > 12) ? "Tehlikeli" : "Az tehlikeli" );
     }
 
     @Override

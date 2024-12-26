@@ -8,14 +8,16 @@ public class Kullanicilar {
     protected String soyisim;
     protected String cinsiyet;
     protected String sifre;
+    protected char beden;
     protected static ArrayList<Kullanicilar> kullanicilarListe = new ArrayList<>();
 
-    public Kullanicilar(String kullaniciadi, String isim, String cinsiyet, String soyisim, String sifre) {
+    public Kullanicilar(String kullaniciadi, String isim, String cinsiyet, String soyisim, String sifre,char beden) {
         this.kullaniciadi = kullaniciadi;
         this.isim = isim;
         this.cinsiyet = cinsiyet;
         this.soyisim = soyisim;
         this.sifre = sifre;
+        this.beden=beden;
         kullanicilarListe.add(this);
     }
 
@@ -24,6 +26,7 @@ public class Kullanicilar {
     public String getIsim() {return isim;}
     public String getSoyisim() {return soyisim;}
     public String getCinsiyet() {return cinsiyet;}
+    public char getBeden(){return beden;}
 
 
     public boolean buyetkilimi(){
