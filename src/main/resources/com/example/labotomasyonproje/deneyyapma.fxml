@@ -19,7 +19,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <ImageView fitHeight="210.0" fitWidth="390.0" layoutX="503.0" layoutY="70.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+      <ImageView fitHeight="210.0" fitWidth="390.0" layoutX="503.0" layoutY="70.0" onMouseClicked="#birlestir_deneyyap" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
          <image>
             <Image url="@../../../resimler/deneyyap-asitbazbirlestir.png" />
          </image>

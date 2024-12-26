@@ -20,11 +20,11 @@
       </Label>
       <AnchorPane layoutX="298.0" layoutY="165.0">
          <children>
-            <Label prefHeight="38.0" prefWidth="339.0" text="Lütfen yanlardan bir adet asit/baz ve kullanmamız için bir adet" textAlignment="CENTER" textFill="#9f44d3" />
+            <Label fx:id="aciklamayukari" prefHeight="38.0" prefWidth="339.0" text="Lütfen yanlardan bir adet asit/baz ve kullanmamız için bir adet" textAlignment="CENTER" textFill="#9f44d3" />
             <Label fx:id="aciklamadegisen" layoutY="19.0" prefHeight="38.0" prefWidth="339.0" text="phmetre seçiniz " textAlignment="CENTER" textFill="#9f44d3" />
          </children>
       </AnchorPane>
-      <Label fx:id="baslikdegisen" alignment="CENTER" layoutX="311.0" layoutY="68.0" prefHeight="38.0" prefWidth="314.0" text="Phmetre ile Ph Ölçme" textFill="#9f44d3">
+      <Label fx:id="baslikdegisen" alignment="CENTER" layoutX="287.0" layoutY="68.0" prefHeight="38.0" prefWidth="362.0" text="Spektrofotmetre ile Renk Değişimi" textFill="#9f44d3">
          <font>
             <Font size="23.0" />
          </font>
@@ -55,6 +55,7 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <StackPane fx:id="degisecekrenkbu" layoutX="408.0" layoutY="426.0" prefHeight="57.0" prefWidth="106.0" visible="false" />
+      <StackPane fx:id="degisecekrenkbu" layoutX="410.0" layoutY="418.0" prefHeight="57.0" prefWidth="106.0" visible="false" />
+      <ListView fx:id="deney2_sagliste" layoutX="645.0" layoutY="31.0" prefHeight="600.0" prefWidth="248.0" />
    </children>
 </AnchorPane>

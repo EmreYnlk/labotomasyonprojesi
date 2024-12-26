@@ -21,6 +21,8 @@ public class A_deney1Kontrol {
     @FXML
     private Label aciklamadegisen;
     @FXML
+    private Label aciklamayukari;
+    @FXML
     private Label baslikdegisen;
     @FXML
     private Label spektrofotmetredeneyiyazisi1;
@@ -31,14 +33,16 @@ public class A_deney1Kontrol {
     private Label phsonucuburda;
     @FXML
     private ListView<Kimyasal> deney1_solliste;
+    @FXML
+    private ListView<Kimyasal> deney2_sagliste;
 
     @FXML
     private Button phmetredeney_baslabuton;
 
     @FXML
     void deneyekraninacik(MouseEvent event) {
-        phsonucuburda.setVisible(false);
-        spektrofotmetredeneyiyazisi1.setVisible(false);
+        /*phsonucuburda.setVisible(false);
+        spektrofotmetredeneyiyazisi1.setVisible(false);*/
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deneyyapma.fxml"));
             Parent yeniRoot = fxmlLoader.load();
@@ -88,7 +92,7 @@ public class A_deney1Kontrol {
                 listeleriEkle(1); //liste güncellenmeli
                 }
         }
-        else{            //en geniş if'in elsi///////////////////////////////////////////////////////////////////////////////
+        else if(hangideney==2){           //en geniş if'in 2.si ///////////////////////////////////////////////////////////////////////////////
             Kimyasal solSecim;
             Makineler sagSecim;
             if (deney1_solliste.getSelectionModel().getSelectedItem()==null || deney1_sagliste.getSelectionModel().getSelectedItem()== null)
@@ -121,9 +125,55 @@ public class A_deney1Kontrol {
                 listeleriEkle(2); //liste güncellenmeli
             }
 
+        } else if(hangideney==3){                               //en geniş if'in 3.sü ///////////////////////////////////////////////////////////////////////////////
+            //3. deney tuşa basınca bu çalışacak
+            Kimyasal solSecim,sagSecim;
+            if (deney1_solliste.getSelectionModel().getSelectedItem()==null || deney2_sagliste.getSelectionModel().getSelectedItem()== null)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Eyvaah!!");
+                alert.setHeaderText("Eksik Seçim Yaptınız");
+                alert.setContentText("");
+                alert.showAndWait();
+                return;
+            }else {
+                solSecim = deney1_solliste.getSelectionModel().getSelectedItem();
+                sagSecim = deney2_sagliste.getSelectionModel().getSelectedItem();
+                String ortarenkbu = deney3icinortarenk(sagSecim.getRenkkodu(), solSecim.getRenkkodu());
+                degisecekrenkbu.setStyle("-fx-background-color: " + ortarenkbu + ";");
+                degisecekrenkbu.setVisible(true);
+                double ortaphbu = ( sagSecim.getPh()+ solSecim.getPh() )/2 ;
+                phsonucuburda.setText(String.valueOf(ortaphbu));
+                phsonucuburda.setVisible(true);
+                spektrofotmetredeneyiyazisi1.setText("İki Kimyasal birleşim sonucu renk ve ph =");
+                spektrofotmetredeneyiyazisi1.setVisible(true);
+            }
+
         }
 
 
+    }
+    private void yazigoster(){
+        if (hangideney==1 || hangideney==2){
+            aciklamayukari.setText("Lütfen yanlardan bir adet asit/baz ve kullanmamız için bir adet");
+
+            deney1_sagliste.setVisible(true);
+            deney2_sagliste.setVisible(false);
+
+            aciklamayukari.setVisible(true);
+            aciklamadegisen.setVisible(true);
+            baslikdegisen.setVisible(true);
+        } else if (hangideney==3) {
+            aciklamayukari.setText("Lütfen birleştirmemiz için birer adet asit ve baz seçiniz");
+            baslikdegisen.setText("Asit ve Baz Birleşimi");
+
+            deney1_sagliste.setVisible(false);
+            deney2_sagliste.setVisible(true);
+
+            aciklamayukari.setVisible(true);
+            aciklamadegisen.setVisible(false);
+            baslikdegisen.setVisible(true);
+        }
     }
 
     public void listeleriEkle(int hangideney) {
@@ -131,6 +181,7 @@ public class A_deney1Kontrol {
             this.hangideney=hangideney;
             baslikdegisen.setText("Phmetre ile Ph Ölçme");
             aciklamadegisen.setText("phmetre seçiniz ");
+            yazigoster();
             deney1_solliste.getItems().clear();
             deney1_sagliste.getItems().clear();
 
@@ -141,10 +192,11 @@ public class A_deney1Kontrol {
             // Makineler için
             deney1_sagliste.getItems().addAll(phmetre.tumphmetreler); // Nesneleri ekle
         }
-        else {
+        else if (hangideney==2){
             this.hangideney=hangideney;
             baslikdegisen.setText("Spektrofotometre ile Renk Değişimi");
             aciklamadegisen.setText("spektrofotometre seçiniz ");
+            yazigoster();
             deney1_solliste.getItems().clear();
             deney1_sagliste.getItems().clear();
 
@@ -156,9 +208,38 @@ public class A_deney1Kontrol {
             deney1_sagliste.getItems().addAll(spektrofotometre.tumspektrofometre); // Nesneleri ekle
 
         }
+        else if (hangideney==3){
+            this.hangideney=hangideney;
+            yazigoster();
+            deney1_solliste.getItems().clear();
+            deney2_sagliste.getItems().clear();
+
+            deney1_solliste.getItems().addAll(Kim_Asit.asitListesi);
+            deney2_sagliste.getItems().addAll(Kim_Baz.bazListesi);
 
 
 
+        }
+
+
+
+    }
+
+
+    private String deney3icinortarenk(String renk1,String renk2){
+        int r1 = Integer.parseInt(renk1.substring(1, 3), 16);
+        int g1 = Integer.parseInt(renk1.substring(3, 5), 16);
+        int b1 = Integer.parseInt(renk1.substring(5, 7), 16);
+
+        int r2 = Integer.parseInt(renk2.substring(1, 3), 16);
+        int g2 = Integer.parseInt(renk2.substring(3, 5), 16);
+        int b2 = Integer.parseInt(renk2.substring(5, 7), 16);
+
+        int ortared = (r1+r2)/2;
+        int ortagreen = (g1+g2)/2;
+        int ortablue = (b1+b2)/2;
+        String sonrgbdeger = String.format("#%02X%02X%02X", ortared, ortagreen, ortablue);
+        return sonrgbdeger;
     }
 
 
