@@ -38,7 +38,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="yonetimButonu" layoutX="27.0" layoutY="508.0" mnemonicParsing="false" onMouseClicked="#YönetimYap" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: e7a5e7;" text="Yönetim" textFill="#9f44d3">
+            <Button fx:id="yonetimButonu" layoutX="27.0" layoutY="508.0" mnemonicParsing="false" onMouseClicked="#YonetimYap" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: e7a5e7;" text="Yönetim" textFill="#9f44d3">
                <font>
                   <Font size="20.0" />
                </font>

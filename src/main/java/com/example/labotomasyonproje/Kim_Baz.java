@@ -11,6 +11,10 @@ public class Kim_Baz extends Kimyasal{
         super(ismi, formul, ph, renkkodu);
         bazListesi.add(this);
     }
+    @Override
+    public String getKendiadi(){
+        return "Baz";
+    }
 
     @Override
     String tehlikelimi() {

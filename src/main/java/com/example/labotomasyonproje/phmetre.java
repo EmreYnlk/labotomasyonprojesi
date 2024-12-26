@@ -15,7 +15,10 @@ public class phmetre implements Makineler{
         Makinelisteleme.ekle(this);
         tumphmetreler.add(this);
     }
-
+    @Override
+    public String getKendiadi(){
+        return "Phmetre";
+    }
 
     @Override
     public String getBarkodno() {

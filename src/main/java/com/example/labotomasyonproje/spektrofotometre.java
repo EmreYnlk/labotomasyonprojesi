@@ -17,6 +17,10 @@ public class spektrofotometre implements Makineler{
         Makinelisteleme.ekle(this);
         tumspektrofometre.add(this);
     }
+    @Override
+    public String getKendiadi(){
+        return "Spektrofotometre";
+    }
 
 
     public boolean isFisebaglimi() {

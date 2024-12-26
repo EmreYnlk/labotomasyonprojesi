@@ -30,4 +30,6 @@ public abstract class Kimyasal {
     }
 
     abstract String tehlikelimi();
+    abstract String getKendiadi();
 }
+

@@ -1,13 +1,11 @@
 package com.example.labotomasyonproje;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
@@ -42,8 +40,6 @@ public class A_deney1Kontrol {
 
     @FXML
     void deneyekraninacik(MouseEvent event) {
-        /*phsonucuburda.setVisible(false);
-        spektrofotmetredeneyiyazisi1.setVisible(false);*/
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deneyyapma.fxml"));
             Parent yeniRoot = fxmlLoader.load();
@@ -67,11 +63,7 @@ public class A_deney1Kontrol {
             Makineler sagSecim;
             if (deney1_solliste.getSelectionModel().getSelectedItem()==null || deney1_sagliste.getSelectionModel().getSelectedItem()== null)
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Eyvaah!!");
-                alert.setHeaderText("Eksik Seçim Yaptınız");
-                alert.setContentText("");
-                alert.showAndWait();
+                uyarilarfonksiyonu(4);
                 return;
             }
             else {solSecim = deney1_solliste.getSelectionModel().getSelectedItem();
@@ -80,15 +72,11 @@ public class A_deney1Kontrol {
 
             if (sagSecim.kirikmi(sagSecim.getDayaniklilik())){
                 //makine kırık işlem yapamaz
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Tüh.Bir şeyler yanlış");
-                alert.setHeaderText("Olamaz. Seçtiğiniz Phmetre Kırık Lütfen Başka Bir Phmetre Seçin");
-                alert.setContentText("");
-                alert.showAndWait();
+                uyarilarfonksiyonu(5);
             } else {
                 //makine kırık değil işleme devam
                 if (ekipmanikullan_kirikmi()){
-                    makine_ekipman_uyari(1);
+                    uyarilarfonksiyonu(1);
                     return;
                 }
                 ///////////////////////
@@ -103,11 +91,7 @@ public class A_deney1Kontrol {
             Makineler sagSecim;
             if (deney1_solliste.getSelectionModel().getSelectedItem()==null || deney1_sagliste.getSelectionModel().getSelectedItem()== null)
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Eyvaah!!");
-                alert.setHeaderText("Eksik Seçim Yaptınız");
-                alert.setContentText("");
-                alert.showAndWait();
+                uyarilarfonksiyonu(4);
                 return;
             }
             else {solSecim = deney1_solliste.getSelectionModel().getSelectedItem();
@@ -116,19 +100,15 @@ public class A_deney1Kontrol {
 
             if (sagSecim.kirikmi(sagSecim.getDayaniklilik())){
                 //makine kırık işlem yapamaz
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Tüh.Bir şeyler yanlış");
-                alert.setHeaderText("Olamaz. Seçtiğiniz Spektrofotometre Kırık Lütfen Başka Bir spektrofotometre Seçin");
-                alert.setContentText("");
-                alert.showAndWait();
+                uyarilarfonksiyonu(3);
             } else {
                 //makine kırık değil işleme devam
                 spektrofotometre gecici_spektro = (spektrofotometre) sagSecim; // Tür dönüştürme
                 if (!gecici_spektro.isFisebaglimi()) {
-                    makine_ekipman_uyari(2);
+                    uyarilarfonksiyonu(2);
                     return;}
                 else if (ekipmanikullan_kirikmi()){                  // burda birbirine bağlı olmazsa ilk hatadan geçip diğerinde kaldığı durumlarda
-                    makine_ekipman_uyari(1);                // ilk işlemi gerçekleştiriyordu.
+                    uyarilarfonksiyonu(1);                // ilk işlemi gerçekleştiriyordu.
                     return;
                 }
                 ///////////////////////
@@ -145,15 +125,11 @@ public class A_deney1Kontrol {
             Kimyasal solSecim,sagSecim;
             if (deney1_solliste.getSelectionModel().getSelectedItem()==null || deney2_sagliste.getSelectionModel().getSelectedItem()== null)
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Eyvaah!!");
-                alert.setHeaderText("Eksik Seçim Yaptınız");
-                alert.setContentText("");
-                alert.showAndWait();
+                uyarilarfonksiyonu(4);
                 return;
             }else {
                 if (ekipmanikullan_kirikmi()){
-                    makine_ekipman_uyari(1);
+                    uyarilarfonksiyonu(1);
                     return;
                 }
                 ///////////////////////
@@ -171,10 +147,75 @@ public class A_deney1Kontrol {
 
         }
         else if(hangideney==4){                               //en geniş if'in 4.sü ///////////////////////////////////////////////////////////////////////////////
-            //
+            ////4. deney tuşa basınca bu çalışacak
+            ObservableList<Kimyasal> solSecim = deney1_solliste.getSelectionModel().getSelectedItems();
+            ObservableList<Makineler> sagSecim = deney1_sagliste.getSelectionModel().getSelectedItems();
+            if (solSecim.isEmpty()||sagSecim.isEmpty()) {
+                uyarilarfonksiyonu(4);
+                return;
+            } else {
+                if (ekipmanikullan_kirikmi()){
+                    uyarilarfonksiyonu(1);
+                    return;
+                }
+            }
+
+
+
+
+
+
+
+                    //////////// burdaki hata her nesne için teker teker bakıyor ve teker teker dayanıklılık harcıyor
+            for (Makineler makine : sagSecim) {
+                // Makine kırık mı
+                if (makine.kirikmi(makine.getDayaniklilik())) {
+                    uyarilarfonksiyonu(3); // Makine kırık
+                    return;
+                }
+                if (makine instanceof spektrofotometre) {
+                    spektrofotometre gecici1_spektro = (spektrofotometre) makine;
+
+                    // Fişe takılı mı kontrolü
+                    if (!gecici1_spektro.isFisebaglimi()) {
+                        uyarilarfonksiyonu(2); // Fişe takılı değil
+                        return;
+                    }
+
+                }
+            }
+            for (Makineler makine : sagSecim) {
+                makine.dayaniklilikharca(makine.getDayaniklilik());
+            }
+
+
+
+
+
+
+
+
+            spektrofotmetredeneyiyazisi1.setText("Tebrikler.Her şeyi kendin başardın.");
+            spektrofotmetredeneyiyazisi1.setVisible(true);
+
+            ObservableList<String> hepsi = javafx.collections.FXCollections.observableArrayList();
+            for (Makineler makine : sagSecim) {
+                hepsi.add(makine.getKendiadi()+": " + makine.getBarkodno());
+            } hepsi.add("\n");
+            for (Kimyasal kimyasal : solSecim) {
+                hepsi.add(kimyasal.getKendiadi()+": " + kimyasal.getFormul());
+            }
+
+            String icerik = String.join(" ", hepsi);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Tebrikler");
+            alert.setHeaderText("Bir deneyin daha sonuna geldik. Tebrik ederiz!");
+            alert.setContentText("İşte kullandıkların\n"+icerik);
+            alert.showAndWait();
+            listeleriEkle(4);
+
         }
-
-
     }
     private void yazigoster(){
         if (hangideney==1){
@@ -211,6 +252,15 @@ public class A_deney1Kontrol {
             deney2_sagliste.setVisible(true);
 
         } else if (hangideney==4) {
+            baslikdegisen.setText("Kendin Yap");
+            baslikdegisen.setVisible(true);
+            aciklamayukari.setText("Lütfen deneyinizde kullanılacakları seçin(Birden fazla seçilebilir)");
+            aciklamayukari.setVisible(true);
+            //başka bir satıra gerek kalmadı burdaki metin gereksiz olduğu için görünmez yapıyoruz
+            aciklamadegisen.setVisible(false);
+
+            deney1_sagliste.setVisible(true);          // deney4 sağdaki liste olarak makineleri kullanıyor
+            deney2_sagliste.setVisible(false);
 
         }
 
@@ -226,11 +276,12 @@ public class A_deney1Kontrol {
             deney1_sagliste.getItems().clear();
 
             // Kimyasallar için
-            deney1_solliste.getItems().addAll(Kim_Asit.asitListesi); // Nesneleri ekle
-            deney1_solliste.getItems().addAll(Kim_Baz.bazListesi); // Nesneleri ekle
-
+            deney1_solliste.getItems().addAll(Kim_Asit.asitListesi);
+            deney1_solliste.getItems().addAll(Kim_Baz.bazListesi);
+            deney1_solliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);          //tekli seçim istiyoruz
             // Phmetre için
-            deney1_sagliste.getItems().addAll(phmetre.tumphmetreler); // Nesneleri ekle
+            deney1_sagliste.getItems().addAll(phmetre.tumphmetreler);
+            deney1_sagliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);          // tekli seçim istiyoruz
         }
         else if (hangideney==2){
             this.hangideney=hangideney;
@@ -241,10 +292,11 @@ public class A_deney1Kontrol {
             // Kimyasallar için
             deney1_solliste.getItems().addAll(Kim_Asit.asitListesi);
             deney1_solliste.getItems().addAll(Kim_Baz.bazListesi);
+            deney1_solliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);                  // tekli seçim istiyoruz
 
             // Spektrofotometre için
             deney1_sagliste.getItems().addAll(spektrofotometre.tumspektrofometre);
-
+            deney1_sagliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);                     // tekli seçim istiyoruz
         }
         else if (hangideney==3){
             this.hangideney=hangideney;
@@ -254,14 +306,26 @@ public class A_deney1Kontrol {
 
             // Asit için
             deney1_solliste.getItems().addAll(Kim_Asit.asitListesi);
+            deney1_solliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);              // tekli seçim istiyoruz
             //Baz için
             deney2_sagliste.getItems().addAll(Kim_Baz.bazListesi);
-
+            deney2_sagliste.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);            // tekli seçim istiyoruz
 
 
         } else if (hangideney==4) {
             this.hangideney=hangideney;
             yazigoster();
+            deney1_solliste.getItems().clear();
+            deney1_sagliste.getItems().clear();
+
+            // Kimyasallar için
+            deney1_solliste.getItems().addAll(Kim_Asit.asitListesi);
+            deney1_solliste.getItems().addAll(Kim_Baz.bazListesi);
+            deney1_solliste.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);          //deney 4 için çoklu seçim istiyoruz
+            // Phmetre için
+            deney1_sagliste.getItems().addAll(phmetre.tumphmetreler);
+            deney1_sagliste.getItems().addAll(spektrofotometre.tumspektrofometre);
+            deney1_sagliste.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);          //deney 4 için çoklu seçim istiyoruz
 
         }
 
@@ -295,7 +359,7 @@ public class A_deney1Kontrol {
             return false;
         }
     }
-    private void makine_ekipman_uyari(int hangislem){
+    private void uyarilarfonksiyonu(int hangislem){
         if (hangislem==1){
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -310,6 +374,26 @@ public class A_deney1Kontrol {
             alert.setHeaderText("Seçtiğin Spektrofotometre Fişe Takılı Değil");
             alert.setContentText("Lütfen Başka Bir Spektrofotometre seç.");
             alert.showAndWait();
+        }
+        else if (hangislem==3) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Tüh.Bir şeyler yanlış");
+            alert.setHeaderText("Olamaz. Seçtiğiniz Spektrofotometre Kırık Lütfen Başka Bir spektrofotometre Seçin");
+            alert.setContentText("");
+            alert.showAndWait();
+        } else if (hangislem==4) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Eyvaah!!");
+            alert.setHeaderText("Eksik Seçim Yaptınız");
+            alert.setContentText("");
+            alert.showAndWait();
+        } else if (hangislem==5) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Tüh.Bir şeyler yanlış");
+            alert.setHeaderText("Olamaz. Seçtiğiniz Phmetre Kırık Lütfen Başka Bir Phmetre Seçin");
+            alert.setContentText("");
+            alert.showAndWait();
+
         }
 
     }

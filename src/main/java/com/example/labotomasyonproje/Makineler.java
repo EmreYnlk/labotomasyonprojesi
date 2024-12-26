@@ -5,8 +5,8 @@ public interface Makineler {
     String getBarkodno();
     int getDayaniklilik();
 
+    String getKendiadi();
     default boolean kirikmi(int dayaniklilik) {
         return dayaniklilik <= 0;
     }
-
 }

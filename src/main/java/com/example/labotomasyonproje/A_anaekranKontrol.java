@@ -151,7 +151,7 @@ public class A_anaekranKontrol {
     }
 
 
-    public void YönetimYap(){
+    public void YonetimYap(){
         tus_ile_gorseldegistir(2);
     }
     void bedenileilgilibilgi(){

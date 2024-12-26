@@ -12,7 +12,10 @@ public class Kim_Asit extends Kimyasal{
         asitListesi.add(this);
     }
 
-
+    @Override
+    public String getKendiadi(){
+        return "Asit";
+    }
 
 
 
