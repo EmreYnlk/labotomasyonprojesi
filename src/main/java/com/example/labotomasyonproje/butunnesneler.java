@@ -12,6 +12,7 @@ public class butunnesneler {
         spektrofotometre spektrofotometre1 = new spektrofotometre("S0001",100,true);
         spektrofotometre spektrofotometre2 = new spektrofotometre("S0002",50,true);
         spektrofotometre spektrofotometre3 = new spektrofotometre("S0003",5,true);
+        spektrofotometre spektrofotometre4 = new spektrofotometre("S0004",5,false);
 
         phmetre phmetre1 = new phmetre("P0001",100);
         phmetre phmetre2 = new phmetre("P0002",50);

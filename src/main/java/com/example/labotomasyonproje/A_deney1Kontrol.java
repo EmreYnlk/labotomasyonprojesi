@@ -88,7 +88,7 @@ public class A_deney1Kontrol {
             } else {
                 //makine kırık değil işleme devam
                 if (ekipmanikullan_kirikmi()){
-                    ekipmankirikuyarisi();
+                    makine_ekipman_uyari(1);
                     return;
                 }
                 ///////////////////////
@@ -123,8 +123,12 @@ public class A_deney1Kontrol {
                 alert.showAndWait();
             } else {
                 //makine kırık değil işleme devam
-                if (ekipmanikullan_kirikmi()){
-                    ekipmankirikuyarisi();
+                spektrofotometre gecici_spektro = (spektrofotometre) sagSecim; // Tür dönüştürme
+                if (!gecici_spektro.isFisebaglimi()) {
+                    makine_ekipman_uyari(2);
+                    return;}
+                else if (ekipmanikullan_kirikmi()){                  // burda birbirine bağlı olmazsa ilk hatadan geçip diğerinde kaldığı durumlarda
+                    makine_ekipman_uyari(1);                // ilk işlemi gerçekleştiriyordu.
                     return;
                 }
                 ///////////////////////
@@ -149,7 +153,7 @@ public class A_deney1Kontrol {
                 return;
             }else {
                 if (ekipmanikullan_kirikmi()){
-                    ekipmankirikuyarisi();
+                    makine_ekipman_uyari(1);
                     return;
                 }
                 ///////////////////////
@@ -291,12 +295,22 @@ public class A_deney1Kontrol {
             return false;
         }
     }
-    private void ekipmankirikuyarisi(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Eyvah! Napıcaz");
-        alert.setHeaderText("Malesef sana uygun ekipman kalmadı.");
-        alert.setContentText("Yöneticilere başvurunuz.");
-        alert.showAndWait();
+    private void makine_ekipman_uyari(int hangislem){
+        if (hangislem==1){
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Eyvah! Napıcaz");
+            alert.setHeaderText("Malesef sana uygun ekipman kalmadı.");
+            alert.setContentText("Yöneticilere başvurunuz.");
+            alert.showAndWait();
+        } else if (hangislem==2) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Eyvah! Napıcaz");
+            alert.setHeaderText("Seçtiğin Spektrofotometre Fişe Takılı Değil");
+            alert.setContentText("Lütfen Başka Bir Spektrofotometre seç.");
+            alert.showAndWait();
+        }
 
     }
 
