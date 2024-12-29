@@ -11,4 +11,7 @@ public interface Makineler {
     default boolean kirikmi(int dayaniklilik) {
         return dayaniklilik <= 0;
     }
+
+    String toString();
+    String toString(boolean detayli);
 }

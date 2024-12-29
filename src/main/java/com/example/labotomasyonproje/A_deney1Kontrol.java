@@ -161,11 +161,6 @@ public class A_deney1Kontrol {
             }
 
 
-
-
-
-
-
                     //////////// burdaki hata her nesne için teker teker bakıyor ve teker teker dayanıklılık harcıyor
             for (Makineler makine : sagSecim) {
                 // Makine kırık mı
@@ -187,12 +182,6 @@ public class A_deney1Kontrol {
             for (Makineler makine : sagSecim) {
                 makine.dayaniklilikharca(makine.getDayaniklilik());
             }
-
-
-
-
-
-
 
 
             spektrofotmetredeneyiyazisi1.setText("Tebrikler.Her şeyi kendin başardın.");

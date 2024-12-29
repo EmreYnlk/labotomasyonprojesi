@@ -8,6 +8,8 @@ public class butunnesneler {
         Yetkili kullanici2 = new Yetkili("emin","Emin","Erkek","Dinç","12345",'M',"Yardımcı");
         Yetkili kullanici3 = new Yetkili("eren","Eren","Erkek","Başali","12345",'M',"Y");
         Kullanicilar kullanici4 = new Kullanicilar("elçin","Elçin","Kadın","Yılmaz","12345",'S');
+        Kullanicilar kullanici5 = new Kullanicilar("ayse","Ayşe","Kadın","Yılmaz","12345",'S');
+        Kullanicilar kullanici6 = new Kullanicilar("ahmet","Ahmet","Erkek","Yılmaz","12345",'M');
 
         spektrofotometre spektrofotometre1 = new spektrofotometre("S0001",100,true, 100);
         spektrofotometre spektrofotometre2 = new spektrofotometre("S0002",50,true, 100);

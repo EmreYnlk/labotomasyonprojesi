@@ -54,7 +54,13 @@ public class spektrofotometre implements Makineler{
         return "Barkod: " + barkodno + " (Dayanıklılık: " + dayaniklilik + ",\nFişe Bağlı: " + (fisebaglimi ? "Evet" : "Hayır") + ")";
     }
 
-
+    //overload
+    public String toString(boolean detayli) {
+        if (!detayli)
+            return toString();
+        else
+            return "Spektrofotometre:\n    Barkod: " + barkodno + " (Dayanıklılık: " + dayaniklilik + ",\n    Fişe Bağlı: " + (fisebaglimi ? "Evet" : "Hayır") + ")";
+    }
 
 
 

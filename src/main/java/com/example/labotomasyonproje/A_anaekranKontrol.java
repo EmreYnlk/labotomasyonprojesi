@@ -125,7 +125,7 @@ public class A_anaekranKontrol {
             sagdakiliste.getItems().add(ekipman.toString());
         }
         for (Makineler makine : Makinelisteleme.tumMakineleriGetir()) {
-            soldaki_liste.getItems().add(makine.toString());
+            soldaki_liste.getItems().add(makine.toString(true));
 
         }
         tus_ile_gorseldegistir(1);
@@ -133,21 +133,10 @@ public class A_anaekranKontrol {
 
     public void DeneyYap(MouseEvent event) {
         try {
-            /*
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("malzemeList.fxml"));
             Parent deneyRoot = fxmlLoader.load();
-            Stage stage = (Stage) deneyYapButon.getScene().getWindow();
-            Scene scene = new Scene(deneyRoot);
-            stage.setScene(scene);
-            stage.setTitle("Ekipman Giyme");
-            */
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("malzemeList.fxml"));
-            Parent deneyRoot = fxmlLoader.load();
-
-            // Mevcut sahneyi alın
             Scene mevcutSahne = ((Button) event.getSource()).getScene();
 
-            // Kök bileşeni değiştir
             mevcutSahne.setRoot(deneyRoot);
         } catch (IOException e) {
             e.printStackTrace();

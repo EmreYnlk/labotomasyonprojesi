@@ -47,5 +47,12 @@ public class phmetre implements Makineler{
         return "Barkod: " + barkodno + " (Dayanıklılık: " + dayaniklilik + ")";
     }
 
+    //overload
+    public String toString(boolean detayli) {
+        if (!detayli)
+            return toString();
+        else
+            return "Phmetre:\n    Barkod: " + barkodno + " (Dayanıklılık: " + dayaniklilik + ")";
+    }
 
 }
