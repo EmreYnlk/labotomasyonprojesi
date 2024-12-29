@@ -28,7 +28,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="27.0" layoutY="444.0" mnemonicParsing="false" onMouseClicked="#DeneyYap" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: e7a5e7;" text="Deney Yap" textFill="#9f44d3">
+            <Button fx:id="deneyYapButon" layoutX="27.0" layoutY="444.0" mnemonicParsing="false" onMouseClicked="#DeneyYap" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: e7a5e7;" text="Deney Yap" textFill="#9f44d3">
                <font>
                   <Font size="20.0" />
                </font>

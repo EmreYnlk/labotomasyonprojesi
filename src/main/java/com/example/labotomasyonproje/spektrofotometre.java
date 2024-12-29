@@ -7,13 +7,15 @@ public class spektrofotometre implements Makineler{
     String barkodno ;
     int dayaniklilik ;
     boolean fisebaglimi ;
+    int max_dayaniklilik ;
 
     public static List<Makineler> tumspektrofometre = new ArrayList<>();
 
-    public spektrofotometre(String barkodno, int dayaniklilik, boolean fisebaglimi) {
+    public spektrofotometre(String barkodno, int dayaniklilik, boolean fisebaglimi, int max_dayaniklilik) {
         this.barkodno = barkodno;
         this.dayaniklilik = dayaniklilik;
         this.fisebaglimi = fisebaglimi;
+        this.max_dayaniklilik = max_dayaniklilik;
         Makinelisteleme.ekle(this);
         tumspektrofometre.add(this);
     }
@@ -36,7 +38,11 @@ public class spektrofotometre implements Makineler{
     public int getDayaniklilik() {
         return dayaniklilik;
     }
+    @Override
+    public void setDayaniklilik(int dayanik) { this.dayaniklilik=dayanik; }
 
+    @Override
+    public int getMax_dayaniklilik() { return max_dayaniklilik; }
 
     @Override
     public void dayaniklilikharca(int dayaniklilik) {

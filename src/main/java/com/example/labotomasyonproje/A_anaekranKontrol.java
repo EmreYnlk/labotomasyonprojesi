@@ -32,11 +32,13 @@ public class A_anaekranKontrol {
     private ImageView anaekran_yonetimresmi;
     @FXML
     private Button yonetimButonu;
+    @FXML
+    private Button deneyYapButon;
 
     @FXML
     private void anaEkranCik(MouseEvent event) {
-        ButtonType evetButonu = new ButtonType("Evet.Çıkalım", ButtonBar.ButtonData.OK_DONE);
-        ButtonType hayirButonu = new ButtonType("Hayır.Çıkmayalım", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType evetButonu = new ButtonType("Evet", ButtonBar.ButtonData.OK_DONE);
+        ButtonType hayirButonu = new ButtonType("Hayır", ButtonBar.ButtonData.CANCEL_CLOSE);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Çıkış Onayı");
         alert.setHeaderText("Uygulamadan çıkmak istiyor musunuz?");
@@ -48,7 +50,7 @@ public class A_anaekranKontrol {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("giris-ekrani.fxml"));
                 Parent root = fxmlLoader.load();
 
-                Window window = ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow());
+                Window window = ((javafx.scene.Node) event.getSource()).getScene().getWindow();
                 if (window instanceof Stage) {
                     ((Stage) window).close();
                 }
@@ -64,7 +66,7 @@ public class A_anaekranKontrol {
         }
     }
 
-    public void setKullaniciBilgisi(String cinsiyet, String isimSoyisim,boolean yetkilimi) {
+    public void setKullaniciBilgisi(String cinsiyet, String isimSoyisim, boolean yetkilimi) {
         hosgeldinMesaji.setText("Hoşgeldin, " + isimSoyisim);
         yonetimButonu.setVisible(yetkilimi);
         anaekran_yonetimresmi.setVisible(yetkilimi);
@@ -86,14 +88,9 @@ public class A_anaekranKontrol {
     }
 
 
-
-
-    private void tus_ile_gorseldegistir(int sayac){                //listeleme yapanlar 1 diğerleri 2 gönderiyor
+    private void tus_ile_gorseldegistir(int sayac) {                //listeleme yapanlar 1 diğerleri 2 gönderiyor
         boolean listeler;
-        if (sayac==1) {
-            listeler=true;}
-        else{
-            listeler=false;}
+        listeler = (sayac == 1);
         anaekran_gorselpencere.setVisible(false);
         listemesaj.setVisible(listeler);
         soldaki_liste.setVisible(listeler);
@@ -109,7 +106,7 @@ public class A_anaekranKontrol {
         sagdakiliste.setStyle("-fx-font-size: 20px;");
 
         for (Kim_Asit asit : Kim_Asit.asitListesi) {
-            soldaki_liste.getItems().add(asit.toString()); // toString çağrılıyor
+            soldaki_liste.getItems().add(asit.toString());
         }
         for (Kim_Baz baz : Kim_Baz.bazListesi) {
             sagdakiliste.getItems().add(baz.toString());
@@ -117,7 +114,8 @@ public class A_anaekranKontrol {
 
         tus_ile_gorseldegistir(1);
     }
-    public void EkipmanListele(){
+
+    public void EkipmanListele() {
         soldaki_liste.getItems().clear();
         sagdakiliste.getItems().clear();
         soldaki_liste.setStyle("-fx-font-size: 14px;");
@@ -132,45 +130,42 @@ public class A_anaekranKontrol {
         }
         tus_ile_gorseldegistir(1);
     }
-    public void DeneyYap() {
-        bedenileilgilibilgi();
+
+    public void DeneyYap(MouseEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deneyyapma.fxml"));
-            Parent yeniRoot = fxmlLoader.load();
+            /*
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("malzemeList.fxml"));
+            Parent deneyRoot = fxmlLoader.load();
+            Stage stage = (Stage) deneyYapButon.getScene().getWindow();
+            Scene scene = new Scene(deneyRoot);
+            stage.setScene(scene);
+            stage.setTitle("Ekipman Giyme");
+            */
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("malzemeList.fxml"));
+            Parent deneyRoot = fxmlLoader.load();
 
-            // Deney yapma kontrol sınıfını al ve gerekli işlemleri yap
-            A_deneyyapmaKontrol kontrol = fxmlLoader.getController();
-            // Gerekirse kontrol sınıfına veri aktarabilirsiniz.
+            // Mevcut sahneyi alın
+            Scene mevcutSahne = ((Button) event.getSource()).getScene();
 
-            Scene mevcutSahne = hosgeldinMesaji.getScene();
-            mevcutSahne.setRoot(yeniRoot);
-
+            // Kök bileşeni değiştir
+            mevcutSahne.setRoot(deneyRoot);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
-    public void YonetimYap(){
+    public void YonetimYap() {
         tus_ile_gorseldegistir(2);
-    }
-    void bedenileilgilibilgi(){
-        char bununbeden = giren_kullanici.getInstance().getBeden();
-        StringBuilder uygunEkipmanlar = new StringBuilder("Senin bedenine uygun ekipmanlar:\n");
-
-        for (Ekipman ekipman : Ekipman.ekipmanListesi) {
-            if (ekipman.getBedenbuyuklugu() == bununbeden) {
-                uygunEkipmanlar.append("- ").append(ekipman.getIsim()).append(" (").append(bununbeden).append(" bedenden ").append(ekipman.getMiktar()).append(" adet kaldı.)\n");
-            }
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("yonetici.fxml"));
+            Parent yoneticiRoot = fxmlLoader.load();
+            Stage stage = (Stage) yonetimButonu.getScene().getWindow();
+            Scene scene = new Scene(yoneticiRoot);
+            stage.setScene(scene);
+            stage.setTitle("Yonetim");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Dikkat et");
-        alert.setHeaderText("Unutma, her deney için bir adet ekipman harcarsın!");
-        alert.setContentText(uygunEkipmanlar.toString());
-        alert.showAndWait();
     }
-
-
-
 }

@@ -30,12 +30,12 @@ public class A_girisKontrol {
         int sayac = bilgisorgulama(kullaniciAdi,sifre);
         if (sayac==1){
             goodloginmesaj();
-            //Burası çok önemli
+            //Burası çok önemli ----- Burada giren_kullanıcının kim olduğu veriliyor
             Kullanicilar mevcutKullanici = Kullanicilar.suankiKullanici(kullaniciAdi);
             giren_kullanici.getInstance().setKullaniciBilgileri(kullaniciAdi,mevcutKullanici.getIsim() + " " + mevcutKullanici.getSoyisim(),mevcutKullanici.getCinsiyet(), mevcutKullanici.buyetkilimi(),mevcutKullanici.getBeden());
             //Burasi çok önemli
 
-            yeniSahne();
+            anaEkran();
 
         }
         else {
@@ -51,7 +51,7 @@ public class A_girisKontrol {
 
 
 
-    public void yeniSahne() {
+    public void anaEkran() {
         try {
             String cinsiyet = giren_kullanici.getInstance().getCinsiyet();
             String isimSoyisim = giren_kullanici.getInstance().getIsimSoyisim();
@@ -60,11 +60,9 @@ public class A_girisKontrol {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("uygulama-anaekran.fxml"));
             Parent root = fxmlLoader.load();
 
-            // Ana ekran kontrolünü al
             A_anaekranKontrol kontrol = fxmlLoader.getController();
             kontrol.setKullaniciBilgisi(cinsiyet, isimSoyisim,yetkilimibu);
 
-            // Yeni sahneyi göster
             Stage stage = new Stage();
             stage.setTitle("Ana Ekran");
             stage.setScene(new Scene(root));
@@ -94,9 +92,9 @@ public class A_girisKontrol {
         alert.setContentText("Giriş Yapılıyor");
         alert.showAndWait();
     }
-    private void badloginmesaj(boolean asd) {
+    private void badloginmesaj(boolean kullanicivarmi) {
         String hatamesaji;
-        if (!asd){
+        if (!kullanicivarmi){
             hatamesaji="Böyle Bir Kullanici Bulunmamaktadır";
         }else {
             hatamesaji="Şifreyi Hatalı Girdiniz";

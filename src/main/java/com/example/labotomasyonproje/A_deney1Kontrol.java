@@ -353,12 +353,9 @@ public class A_deney1Kontrol {
 
 
     private boolean ekipmanikullan_kirikmi(){
-        if (Ekipman.ekipmankullan_kaldimi()){
-            return true;
-        }else {
-            return false;
-        }
+        return Ekipman.ekipmankullan_kaldimi();
     }
+
     private void uyarilarfonksiyonu(int hangislem){
         if (hangislem==1){
 

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="660.0" prefWidth="923.0" style="-fx-background-color: linear-gradient(to right, #C8A2C8, #e4bce4);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.labotomasyonproje.A_ekipmanKontrol">
+   <children>
+      <Label layoutX="421.0" layoutY="14.0" text="UYARI">
+         <font>
+            <Font name="Courier New" size="45.0" />
+         </font>
+      </Label>
+      <Label layoutX="271.0" layoutY="68.0" prefHeight="30.0" prefWidth="436.0" text="Deney Ekipmanlarini Giymeden Deneye Baslayamazsin" textFill="#cc652b">
+         <font>
+            <Font name="Centaur" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="265.0" layoutY="163.0" prefHeight="30.0" prefWidth="449.0" text="Giydigin Ekipmanlari Asagidan Isaretle" textFill="#27903b">
+         <font>
+            <Font name="Modern No. 20" size="27.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="eldivenCheck" layoutX="118.0" layoutY="466.0" mnemonicParsing="false" text="Eldiven" textFill="#c30404">
+         <font>
+            <Font size="20.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="gozlukCheck" layoutX="662.0" layoutY="466.0" mnemonicParsing="false" text="Koruyucu Gözlük" textFill="#c30404">
+         <font>
+            <Font size="20.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="onlukCheck" layoutX="417.0" layoutY="466.0" mnemonicParsing="false" text="Önlük" textFill="#c30404">
+         <font>
+            <Font size="20.0" />
+         </font></CheckBox>
+      <Label layoutX="292.0" layoutY="116.0" text="Zorunlu Ekipmanlar Kirmizi Renkle Isaretlenmistir" textFill="#c30404">
+         <font>
+            <Font name="Centaur" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="devamButton" layoutX="798.0" layoutY="592.0" mnemonicParsing="false" onAction="#checkEt" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: f9d3f9;" text="Devam">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="149.0" fitWidth="135.0" layoutX="103.0" layoutY="256.0" AnchorPane.leftAnchor="100.0">
+         <image>
+            <Image url="@../../../resimler/eldiven.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="149.0" fitWidth="135.0" layoutX="394.0" layoutY="256.0">
+         <image>
+            <Image url="@../../../resimler/onluk.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="54.0" fitWidth="59.0" layoutX="362.0" layoutY="14.0">
+         <image>
+            <Image url="@../../../resimler/uyari.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="149.0" fitWidth="135.0" layoutX="686.0" layoutY="256.0" AnchorPane.rightAnchor="100.0">
+         <image>
+            <Image url="@../../../resimler/koruyucugozluk.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="54.0" fitWidth="59.0" layoutX="557.0" layoutY="14.0">
+         <image>
+            <Image url="@../../../resimler/uyari.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

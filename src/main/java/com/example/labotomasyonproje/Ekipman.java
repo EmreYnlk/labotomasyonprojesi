@@ -33,6 +33,7 @@ public class Ekipman {
     public void setMiktar(int miktar) {
         this.miktar = miktar;
     }
+    public int getMaksmiktar() { return maksmiktar; }
 
     public static boolean ekipmankullan_kaldimi(){                           // önce ilk if ile bakıyor 0 dan az olan var mı diye. Yoksa devam edip 1 azaltıyor
         char bununbeden = giren_kullanici.getInstance().getBeden();

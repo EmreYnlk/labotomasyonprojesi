@@ -9,14 +9,14 @@ public class butunnesneler {
         Yetkili kullanici3 = new Yetkili("eren","Eren","Erkek","Başali","12345",'M',"Y");
         Kullanicilar kullanici4 = new Kullanicilar("elçin","Elçin","Kadın","Yılmaz","12345",'S');
 
-        spektrofotometre spektrofotometre1 = new spektrofotometre("S0001",100,true);
-        spektrofotometre spektrofotometre2 = new spektrofotometre("S0002",50,true);
-        spektrofotometre spektrofotometre3 = new spektrofotometre("S0003",5,true);
-        spektrofotometre spektrofotometre4 = new spektrofotometre("S0004",5,false);
+        spektrofotometre spektrofotometre1 = new spektrofotometre("S0001",100,true, 100);
+        spektrofotometre spektrofotometre2 = new spektrofotometre("S0002",50,true, 100);
+        spektrofotometre spektrofotometre3 = new spektrofotometre("S0003",5,true ,100);
+        spektrofotometre spektrofotometre4 = new spektrofotometre("S0004",5,false ,100);
 
-        phmetre phmetre1 = new phmetre("P0001",100);
-        phmetre phmetre2 = new phmetre("P0002",50);
-        phmetre phmetre3 = new phmetre("P0003",5);
+        phmetre phmetre1 = new phmetre("P0001",100,100);
+        phmetre phmetre2 = new phmetre("P0002",50,100);
+        phmetre phmetre3 = new phmetre("P0003",5,100);
 
         Ekipman eldiven1 = new Ekipman("Eldiven",'S',50,50);
         Ekipman eldiven2 = new Ekipman("Eldiven",'M',50,50);
